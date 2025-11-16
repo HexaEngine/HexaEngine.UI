@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>true</EnableAotAnalyzer>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
+
+		<PackageId>HexaEngine.UI</PackageId>
+		<AssemblyVersion>1.0.0.1</AssemblyVersion>
+		<PackageVersion>1.0.0.1</PackageVersion>
+		<Description>Retained-mode UI module for HexaEngine — a high-performance, cross-platform 3D game engine. Provides retained UI layout, widgets, styling, rendering and input integration for building in-engine editors and game interfaces.</Description>
+		<PackageTags>HexaEngine;UI;retained-mode;GUI;user-interface;game-engine;C#;dotnet</PackageTags>
+		<Authors>Juna Meinhold</Authors>
+		<Copyright>Copyright (c) 2022 Juna Meinhold</Copyright>
+		<PackageProjectUrl>https://github.com/HexaEngine/HexaEngine</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/HexaEngine/HexaEngine</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
+
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="HexaEngine.Core" Version="1.0.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="assets\HexaEngine.UI\shaders\prim\ps.hlsl">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\HexaEngine.UI\shaders\prim\vs.hlsl">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\HexaEngine.UI\shaders\tex\ps.hlsl">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\HexaEngine.UI\shaders\tex\vs.hlsl">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\HexaEngine.UI\shaders\vec\ps.hlsl">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="assets\HexaEngine.UI\shaders\vec\vs.hlsl">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

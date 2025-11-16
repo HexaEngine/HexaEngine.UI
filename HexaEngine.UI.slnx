@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HexaEngine.UI/HexaEngine.UI.csproj" />
+  <Project Path="TestApp/TestApp.csproj" />
+</Solution>
