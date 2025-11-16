@@ -1,0 +1,8 @@
+<Project>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\contentFiles\any\any\assets\HexaEngine.UI.assets" 
+          Link="assets\HexaEngine.UI.assets" 
+          CopyToOutputDirectory="PreserveNewest" 
+          Visible="false" />
+  </ItemGroup>
+</Project>

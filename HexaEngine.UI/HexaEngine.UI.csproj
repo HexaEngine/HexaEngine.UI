@@ -30,31 +30,42 @@
 		<NoWarn>$(NoWarn);1591</NoWarn>
 
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<ContentTargetFolders>contentFiles</ContentTargetFolders>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 	  <PackageReference Include="HexaEngine.Core" Version="1.0.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="assets\HexaEngine.UI\shaders\prim\ps.hlsl">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\HexaEngine.UI\shaders\prim\vs.hlsl">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\HexaEngine.UI\shaders\tex\ps.hlsl">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\HexaEngine.UI\shaders\tex\vs.hlsl">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\HexaEngine.UI\shaders\vec\ps.hlsl">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="assets\HexaEngine.UI\shaders\vec\vs.hlsl">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
+		<None Update="assets\HexaEngine.UI\shaders\prim\ps.hlsl" /> 
+		<None Update="assets\HexaEngine.UI\shaders\prim\vs.hlsl" />
+		<None Update="assets\HexaEngine.UI\shaders\tex\ps.hlsl" />
+		<None Update="assets\HexaEngine.UI\shaders\tex\vs.hlsl" />
+		<None Update="assets\HexaEngine.UI\shaders\vec\ps.hlsl" />
+		<None Update="assets\HexaEngine.UI\shaders\vec\vs.hlsl" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\LICENSE.txt" Pack="true" PackagePath="\" Link="LICENSE.txt" />
+		<Content Include="..\README.md" Pack="true" PackagePath="\" Link="README.md" />
+		<Content Include="..\icon.png" Pack="true" PackagePath="\" Link="icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Copy to output directory for this project -->
+		<None Include="assets\HexaEngine.UI.assets" CopyToOutputDirectory="Always" />
+		
+		<!-- Include assets file in NuGet package content -->
+		<None Include="assets\HexaEngine.UI.assets" Pack="true" PackagePath="contentFiles\any\any\assets" />
+		
+		<!-- Include build targets file -->
+		<None Include="build\HexaEngine.UI.targets" Pack="true" PackagePath="build;buildTransitive" />
+	</ItemGroup>
+
+	<!-- Target to run HexaAssetTool before build -->
+	<Target Name="GenerateAssets" BeforeTargets="BeforeBuild">
+		<Exec Command="HexaAssetTool.exe -m MultiCreate -p &quot;./&quot;" WorkingDirectory="$(ProjectDir)assets" />
+	</Target>
 
 </Project>
