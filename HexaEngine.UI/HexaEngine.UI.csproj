@@ -53,13 +53,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!-- Copy to output directory for this project -->
-		<None Include="assets\HexaEngine.UI.assets" CopyToOutputDirectory="Always" />
-		
-		<!-- Include assets file in NuGet package content -->
-		<None Include="assets\HexaEngine.UI.assets" Pack="true" PackagePath="contentFiles\any\any\assets" />
-		
-		<!-- Include build targets file -->
+		<None Include="assets\HexaEngine.UI.assets" CopyToOutputDirectory="Always" Pack="true" PackagePath="contentFiles\any\any\assets" />
 		<None Include="build\HexaEngine.UI.targets" Pack="true" PackagePath="build;buildTransitive" />
 	</ItemGroup>
 

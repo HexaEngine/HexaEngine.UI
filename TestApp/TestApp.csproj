@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Test.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Test.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>HexaEngine.UI XAML Gen</Generator>
+      <LastGenOutput>Test.g.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HexaEngine.D3D11" Version="1.0.0.1" />
     <PackageReference Include="HexaEngine.OpenAL" Version="1.0.0.1" />
   </ItemGroup>
@@ -17,9 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Test.xaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Compile Update="Test.g.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -13,6 +13,7 @@
     using HexaEngine.UI.Graphics;
     using HexaEngine.UI.Markup;
     using System.Numerics;
+    using TestApp;
 
     public sealed class TestWindow : CoreWindow
     {
@@ -52,8 +53,7 @@
 
         private void MakeUI()
         {
-            XamlReader reader = new();
-            window = (UIWindow)reader.Parse("Test.xaml")!;
+            window = new Test();
             window.Show();
             window.OnInvalidateVisual += OnInvalidateVisual;
             window.InvalidateMeasure();
