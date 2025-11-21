@@ -92,7 +92,7 @@ namespace HexaEngine.UI.XamlGen
             }
         }
 
-        public static string Convert(string value, string propertyName, string targetTypeName, string xmlPrefix)
+        public static string Convert(string value, ReadOnlySpan<char> propertyName, ReadOnlySpan<char> targetTypeName, ReadOnlySpan<char> xmlPrefix)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -105,6 +105,17 @@ namespace HexaEngine.UI.XamlGen
             {
                 // No type info available - this is an ERROR, not a silent fallback
                 throw new InvalidOperationException($"Could not determine type for property '{propertyName}' on type '{targetTypeName}'");
+            }
+
+            return Convert(value, propertyType, propertyName);
+        }
+
+
+        public static string Convert(string value, Type propertyType, ReadOnlySpan<char> propertyName)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return "null";
             }
 
             // Try registered converter first

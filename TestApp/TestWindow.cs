@@ -3,8 +3,10 @@
     using Hexa.NET.Mathematics;
     using Hexa.NET.Utilities.Threading;
     using HexaEngine;
+    using HexaEngine.Core;
     using HexaEngine.Core.Audio;
     using HexaEngine.Core.Graphics;
+    using HexaEngine.Core.Input.Events;
     using HexaEngine.Core.Windows;
     using HexaEngine.Core.Windows.Events;
     using HexaEngine.Graphics.Renderers;
@@ -46,9 +48,15 @@
 
             compositionTexture = new(swapChain.Backbuffer.Description.Format, Width, Height, 1, 1, CpuAccessFlags.None, GpuAccessFlags.RW);
 
+            
             MakeUI();
 
             Show();
+        }
+
+        private static Matrix3x2 ComputeInputTransform(int x, int y)
+        {
+            return Matrix3x2.CreateTranslation(-new Vector2(x, y));
         }
 
         private void MakeUI()
@@ -57,6 +65,7 @@
             window.Show();
             window.OnInvalidateVisual += OnInvalidateVisual;
             window.InvalidateMeasure();
+            window.SetInputTransform(ComputeInputTransform(X, Y));
         }
 
         private bool invalidate = true;
@@ -65,6 +74,27 @@
         {
             invalidate = true;
         }
+
+
+        protected override void OnExposed(ExposedEventArgs args)
+        {
+            base.OnExposed(args);
+
+            window?.SetInputTransform(ComputeInputTransform(X, Y));
+        }
+
+        protected override void OnSizeChanged(SizeChangedEventArgs args)
+        {
+            base.OnSizeChanged(args);
+            window?.SetInputTransform(ComputeInputTransform(X, Y));
+        }
+
+        protected override void OnMoved(MovedEventArgs args)
+        {
+            base.OnMoved(args);
+            window?.SetInputTransform(ComputeInputTransform(args.NewX, args.NewY));
+        }
+       
 
         /// <summary>
         /// Renders the content of the window using the specified graphics context.
@@ -149,12 +179,6 @@
 
             resize = true;
             base.OnResized(args);
-        }
-
-        protected override void OnMoved(MovedEventArgs args)
-        {
-            window.SetInputTransform(Matrix3x2.CreateTranslation(-new Vector2(args.NewX, args.NewY)));
-            base.OnMoved(args);
         }
 
         protected override void DisposeCore()

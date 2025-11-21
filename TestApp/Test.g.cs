@@ -32,8 +32,8 @@ namespace TestApp
             element0.RowDefinitions.Add(new RowDefinition());
             element0.RowDefinitions.Add(new RowDefinition());
             StackPanel element1 = new();
-            Grid.SetColumn(element1, 1);
-            Grid.SetRow(element1, 1);
+            element1.SetValue(Grid.ColumnProperty, 1);
+            element1.SetValue(Grid.RowProperty, 1);
             element1.HorizontalAlignment = HorizontalAlignment.Center;
             Label element2 = new();
             element2.Margin = new Thickness(0, 0, 0, 0);
@@ -58,9 +58,12 @@ namespace TestApp
             element5.MinWidth = 100;
             element5.MinHeight = 40;
             element5.WordWrapping = WordWrapping.Wrap;
+            Button element6 = new();
+            element6.Content = "Test";
+            element1.Children.Add(element6);
             element0.Children.Add(element1);
             this.Content = element0;
-            this.Content = this;
+            element6.Click += OnButtonClick;
         }
     }
 }

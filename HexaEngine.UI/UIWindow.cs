@@ -14,7 +14,11 @@
         private bool hovered;
         private Matrix3x2 inputTransform = Matrix3x2.Identity;
 
+        public static readonly DependencyProperty<Color> BackgroundColorProperty = DependencyProperty.Register<UIWindow, Color>(nameof(BackgroundColor), false, new FrameworkMetadata(Colors.White) { AffectsRender = true });
+
         public Color BackgroundColor { get; set; } = Colors.White;
+
+        public static readonly DependencyProperty<string?> TitleProperty = DependencyProperty.Register<UIWindow, string?>(nameof(Title), false, new FrameworkMetadata() { AffectsRender = true });
 
         public string? Title { get; set; }
 

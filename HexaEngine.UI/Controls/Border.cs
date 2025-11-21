@@ -7,15 +7,15 @@
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
     public sealed class Border : Decorator
     {
-        public static readonly DependencyProperty<Brush> BackgroundProperty = DependencyProperty.Register<Control, Brush>(nameof(Background), false, new(Brushes.Transparent));
+        public static readonly DependencyProperty<Brush> BackgroundProperty = DependencyProperty.Register<Border, Brush>(nameof(Background), false, new(Brushes.Transparent));
 
         public Brush? Background { get => GetValue(BackgroundProperty); set => SetValue(BackgroundProperty, value); }
 
-        public static readonly DependencyProperty<Brush> BorderBrushProperty = DependencyProperty.Register<Control, Brush>(nameof(BorderBrush), false, new(Brushes.Transparent));
+        public static readonly DependencyProperty<Brush> BorderBrushProperty = DependencyProperty.Register<Border, Brush>(nameof(BorderBrush), false, new(Brushes.Transparent));
 
         public Brush? BorderBrush { get => GetValue(BorderBrushProperty); set => SetValue(BorderBrushProperty, value); }
 
-        public static readonly DependencyProperty<Thickness> BorderThicknessProperty = DependencyProperty.Register<Control, Thickness>(nameof(BorderThickness), false, new FrameworkMetadata(new Thickness(0)) { AffectsArrange = true });
+        public static readonly DependencyProperty<Thickness> BorderThicknessProperty = DependencyProperty.Register<Border, Thickness>(nameof(BorderThickness), false, new FrameworkMetadata(new Thickness(0)) { AffectsArrange = true });
 
         public Thickness BorderThickness { get => GetValue(BorderThicknessProperty); set => SetValue(BorderThicknessProperty, value); }
 

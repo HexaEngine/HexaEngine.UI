@@ -11,13 +11,13 @@
     <None Remove="Test.xaml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Test.xaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <Generator>HexaEngine.UI XAML Gen</Generator>
-      <LastGenOutput>Test.g.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="Test.xaml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<Generator>HexaEngine.UI XAML Gen</Generator>
+			<LastGenOutput>Test.g.cs</LastGenOutput>
+		</Content>
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="HexaEngine.D3D11" Version="1.0.0.1" />

@@ -3,13 +3,20 @@
     using HexaEngine.Core.Input;
     using HexaEngine.Core.Input.Events;
     using HexaEngine.Core.Windows.Events;
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
     public class ButtonBase : ContentControl
     {
-        public static readonly RoutedEvent<RoutedEventArgs> ClickEvent = EventManager.Register<Button, RoutedEventArgs>(nameof(Click), RoutingStrategy.Direct);
+        public static readonly RoutedEvent<RoutedEventArgs> ClickEvent = EventManager.Register<ButtonBase, RoutedEventArgs>(nameof(Click), RoutingStrategy.Direct);
         private ClickMode clickMode;
+
+        static ButtonBase()
+        {
+            ClickEvent.AddClassHandler<ButtonBase>((x, args) => x?.OnClick(args));
+        }
+
 
         public event RoutedEventHandler<RoutedEventArgs> Click
         {
@@ -18,6 +25,11 @@
         }
 
         public ClickMode ClickMode { get => clickMode; set => clickMode = value; }
+
+
+        protected virtual void OnClick(RoutedEventArgs args)
+        {
+        }
 
         protected override void OnMouseUp(MouseButtonEventArgs args)
         {

@@ -108,6 +108,14 @@
             WriteLine("}");
         }
 
+        public void EndBlock(string marker = "}")
+        {
+            if (blocks == 0) return;
+            --blocks;
+            Unindent(1);
+            WriteLine(marker);
+        }
+
         public readonly struct CodeBlock : IDisposable
         {
             private readonly CodeWriter writer;

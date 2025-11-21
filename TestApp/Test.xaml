@@ -16,6 +16,7 @@
 			<Label Margin="0,0,0,0" Foreground="#FFFFFF"  FontFamilyName="Cascadia Mono">StackItem 2</Label>
 			<Label Margin="0,0,0,0" Foreground="#FFFFFF"  FontFamilyName="Cascadia Mono">StackItem 3</Label>
 			<TextBox MinWidth="100" MinHeight="40" WordWrapping="Wrap" />
+			<Button Click="OnButtonClick">Test</Button>
 		</StackPanel>
 	</Grid>
 </UIWindow>

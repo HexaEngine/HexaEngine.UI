@@ -1,0 +1,412 @@
+﻿C:\Users\junam\source\repos\HexaEngine.UI\HexaEngine.UI\bin\Debug\net9.0\HexaEngine.UI.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Tracing.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.AccessControl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XmlSerializer.dll
+C:\Users\junam\.nuget\packages\hexa.net.utilities\2.2.4\lib\net9.0\Hexa.NET.Utilities.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Quic.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.TypeExtensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Formats.Asn1.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.MemoryMappedFiles.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Numerics.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Mail.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Transactions.dll
+C:\Users\junam\.nuget\packages\hexa.net.spirv.core\1.0.1\lib\net9.0\Hexa.NET.SPIRV.Core.dll
+C:\Users\junam\.nuget\packages\system.security.cryptography.protecteddata\8.0.0\lib\net8.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.csharp\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Intrinsics.dll
+C:\Users\junam\.nuget\packages\newtonsoft.json\13.0.3\lib\net6.0\Newtonsoft.Json.dll
+C:\Users\junam\.nuget\packages\hexa.net.debugdraw\2.3.2\lib\net9.0\Hexa.NET.DebugDraw.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebSockets.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Expressions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.Win32.Registry.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Data.DataSetExtensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Json.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Encoding.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ServiceModel.Web.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Emit.Lightweight.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Emit.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Sockets.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Xml.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\WindowsBase.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.VisualBasic.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.InteropServices.dll
+C:\Users\junam\.nuget\packages\system.configuration.configurationmanager\8.0.0\lib\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Drawing.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encoding.CodePages.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Console.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.ReaderWriter.dll
+C:\Users\junam\.nuget\packages\hexa.net.spirvreflect\1.0.1\lib\net9.0\Hexa.NET.SPIRVReflect.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ObjectModel.dll
+C:\Users\junam\.nuget\packages\hexa.net.imgui.backends.sdl3\1.0.14-preview\lib\net9.0\Hexa.NET.ImGui.Backends.SDL3.dll
+C:\Users\junam\.nuget\packages\k4os.compression.lz4\1.3.8\lib\net6.0\K4os.Compression.LZ4.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ServiceProcess.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Principal.dll
+C:\Users\junam\.nuget\packages\system.diagnostics.performancecounter\8.0.0\lib\net8.0\System.Diagnostics.PerformanceCounter.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Claims.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.DiagnosticSource.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Pipelines.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.dll
+C:\Users\junam\.nuget\packages\system.io.hashing\9.0.0\lib\net9.0\System.IO.Hashing.dll
+C:\Users\junam\.nuget\packages\system.diagnostics.eventlog\8.0.0\lib\net8.0\System.Diagnostics.EventLog.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Specialized.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Security.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Primitives.dll
+C:\Users\junam\.nuget\packages\hexagen.runtime\1.1.17\lib\net9.0\HexaGen.Runtime.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\netstandard.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Resources.Writer.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.CSharp.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Http.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.SecureString.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Configuration.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encoding.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.VisualBasic.Core.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Contracts.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Formatters.dll
+C:\Users\junam\.nuget\packages\hexa.net.logging\2.0.0\lib\net8.0\Hexa.NET.Logging.dll
+C:\Users\junam\.nuget\packages\hexa.net.math\2.0.3\lib\net9.0\Hexa.NET.Math.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Cng.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.Win32.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Principal.Windows.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.StackTrace.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Loader.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ValueTuple.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encodings.Web.dll
+C:\Users\junam\.nuget\packages\hexa.net.imguizmo\2.2.6\lib\net9.0\Hexa.NET.ImGuizmo.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.csharp.scripting\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Ping.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.common\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Formats.Tar.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Data.Common.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.NetworkInformation.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.Dataflow.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Dynamic.Runtime.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Windows.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.OpenSsl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Transactions.Local.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Pipes.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Thread.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XPath.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XDocument.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Pipes.AccessControl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Overlapped.dll
+C:\Users\junam\.nuget\packages\system.management\8.0.0\lib\net8.0\System.Management.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Process.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Requests.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Queryable.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Resources.Reader.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.IsolatedStorage.dll
+C:\Users\junam\.nuget\packages\newtonsoft.json.bson\1.0.3\lib\netstandard2.0\Newtonsoft.Json.Bson.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.CompilerServices.VisualC.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Drawing.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.AccessControl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Handles.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.ServicePoint.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.Parallel.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Numerics.Vectors.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.AppContext.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Memory.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.ZipFile.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Concurrent.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.EventBasedAsync.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Tools.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.Brotli.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Globalization.Calendars.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Metadata.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Channels.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Data.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Http.Json.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Numerics.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.DataAnnotations.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.TextWriterTraceListener.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Json.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Emit.ILGeneration.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.FileSystem.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\mscorlib.dll
+C:\Users\junam\.nuget\packages\hexa.net.shaderc\1.0.0\lib\net9.0\Hexa.NET.Shaderc.dll
+C:\Users\junam\.nuget\packages\k4os.compression.lz4.streams\1.3.8\lib\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.Watcher.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Resources.ResourceManager.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Timer.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.Linq.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebHeaderCollection.dll
+C:\Users\junam\.nuget\packages\system.codedom\8.0.0\lib\net8.0\System.CodeDom.dll
+C:\Users\junam\.nuget\packages\hexaengine.core\1.0.0.1\lib\net9.0\HexaEngine.Core.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Csp.dll
+C:\Users\junam\.nuget\packages\hexa.net.imgui\2.2.6\lib\net9.0\Hexa.NET.ImGui.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.Annotations.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.DriveInfo.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Algorithms.dll
+C:\Users\junam\.nuget\packages\hexa.net.assimp\1.0.3\lib\net9.0\Hexa.NET.Assimp.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebSockets.Client.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.TraceSource.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.RegularExpressions.dll
+C:\Users\junam\.nuget\packages\hexa.net.implot\2.2.6\lib\net9.0\Hexa.NET.ImPlot.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encoding.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Buffers.dll
+C:\Users\junam\.nuget\packages\k4os.hash.xxhash\1.0.8\lib\net6.0\K4os.Hash.xxHash.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebProxy.dll
+C:\Users\junam\.nuget\packages\hexa.net.imnodes\2.2.6\lib\net9.0\Hexa.NET.ImNodes.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Globalization.Extensions.dll
+C:\Users\junam\.nuget\packages\hardware.info\101.0.0\lib\netstandard2.0\Hardware.Info.dll
+C:\Users\junam\.nuget\packages\hexa.net.freetype\1.1.1\lib\net9.0\Hexa.NET.FreeType.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.InteropServices.JavaScript.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Globalization.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.Serialization.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Debug.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.UnmanagedMemoryStream.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.HttpListener.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Immutable.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.FileVersionInfo.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Web.HttpUtility.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.NameResolution.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebClient.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.DispatchProxy.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.ThreadPool.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Core.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XPath.XDocument.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.scripting.common\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.Scripting.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Parallel.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Web.dll
+C:\Users\junam\.nuget\packages\hexa.net.spirvcross\1.0.1\lib\net9.0\Hexa.NET.SPIRVCross.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.X509Certificates.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.TypeConverter.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XmlDocument.dll
+C:\Users\junam\.nuget\packages\hexa.net.sdl3\1.2.13\lib\net9.0\Hexa.NET.SDL3.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.NonGeneric.dll
+C:\Users\junam\source\repos\HexaEngine.UI\TestApp\bin\Debug\net9.0\TestApp.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Tracing.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.AccessControl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XmlSerializer.dll
+C:\Users\junam\.nuget\packages\hexa.net.utilities\2.2.4\lib\net9.0\Hexa.NET.Utilities.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Quic.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.TypeExtensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Formats.Asn1.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.MemoryMappedFiles.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Numerics.dll
+C:\Users\junam\.nuget\packages\hexa.net.d3dcompiler\1.0.6\lib\net9.0\Hexa.NET.D3DCompiler.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Mail.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Transactions.dll
+C:\Users\junam\.nuget\packages\hexa.net.spirv.core\1.0.1\lib\net9.0\Hexa.NET.SPIRV.Core.dll
+C:\Users\junam\.nuget\packages\system.security.cryptography.protecteddata\8.0.0\lib\net8.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.csharp\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Intrinsics.dll
+C:\Users\junam\.nuget\packages\newtonsoft.json\13.0.3\lib\net6.0\Newtonsoft.Json.dll
+C:\Users\junam\.nuget\packages\hexa.net.debugdraw\2.3.2\lib\net9.0\Hexa.NET.DebugDraw.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebSockets.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Expressions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.Win32.Registry.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Data.DataSetExtensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Json.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Encoding.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ServiceModel.Web.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Emit.Lightweight.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Emit.dll
+C:\Users\junam\.nuget\packages\hexaengine.openal\1.0.0.1\lib\net9.0\HexaEngine.OpenAL.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Sockets.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Xml.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\WindowsBase.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.VisualBasic.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.InteropServices.dll
+C:\Users\junam\.nuget\packages\system.configuration.configurationmanager\8.0.0\lib\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Drawing.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encoding.CodePages.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Console.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.ReaderWriter.dll
+C:\Users\junam\.nuget\packages\hexa.net.spirvreflect\1.0.1\lib\net9.0\Hexa.NET.SPIRVReflect.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ObjectModel.dll
+C:\Users\junam\.nuget\packages\hexa.net.imgui.backends.sdl3\1.0.14-preview\lib\net9.0\Hexa.NET.ImGui.Backends.SDL3.dll
+C:\Users\junam\.nuget\packages\k4os.compression.lz4\1.3.8\lib\net6.0\K4os.Compression.LZ4.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ServiceProcess.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Principal.dll
+C:\Users\junam\.nuget\packages\system.diagnostics.performancecounter\8.0.0\lib\net8.0\System.Diagnostics.PerformanceCounter.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Claims.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.DiagnosticSource.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Pipelines.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.dll
+C:\Users\junam\.nuget\packages\system.io.hashing\9.0.0\lib\net9.0\System.IO.Hashing.dll
+C:\Users\junam\.nuget\packages\system.diagnostics.eventlog\8.0.0\lib\net8.0\System.Diagnostics.EventLog.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Specialized.dll
+C:\Users\junam\.nuget\packages\hexa.net.d3d11on12\1.0.6\lib\net9.0\Hexa.NET.D3D11On12.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Security.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Primitives.dll
+C:\Users\junam\.nuget\packages\hexagen.runtime\1.1.17\lib\net9.0\HexaGen.Runtime.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\netstandard.dll
+C:\Users\junam\.nuget\packages\hexa.net.dxgi\1.0.6\lib\net9.0\Hexa.NET.DXGI.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Resources.Writer.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.CSharp.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Http.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.SecureString.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Configuration.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encoding.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.VisualBasic.Core.dll
+C:\Users\junam\.nuget\packages\hexa.net.directxtex\2.0.4\lib\net9.0\Hexa.NET.DirectXTex.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Contracts.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Formatters.dll
+C:\Users\junam\.nuget\packages\hexa.net.logging\2.0.0\lib\net8.0\Hexa.NET.Logging.dll
+C:\Users\junam\.nuget\packages\hexa.net.math\2.0.3\lib\net9.0\Hexa.NET.Math.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Cng.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.Win32.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Principal.Windows.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.StackTrace.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Loader.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ValueTuple.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encodings.Web.dll
+C:\Users\junam\.nuget\packages\hexa.net.imguizmo\2.2.6\lib\net9.0\Hexa.NET.ImGuizmo.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.csharp.scripting\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Ping.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.common\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Formats.Tar.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Data.Common.dll
+C:\Users\junam\.nuget\packages\hexa.net.d3d11\1.0.6\lib\net9.0\Hexa.NET.D3D11.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.NetworkInformation.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.Dataflow.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Dynamic.Runtime.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Windows.dll
+C:\Users\junam\.nuget\packages\hexa.net.d3dcommon\1.0.6\lib\net9.0\Hexa.NET.D3DCommon.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.OpenSsl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Transactions.Local.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Pipes.dll
+C:\Users\junam\.nuget\packages\hexaengine.d3d11\1.0.0.1\lib\net9.0\HexaEngine.D3D11.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Thread.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XPath.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XDocument.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Pipes.AccessControl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Overlapped.dll
+C:\Users\junam\.nuget\packages\system.management\8.0.0\lib\net8.0\System.Management.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Process.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Requests.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Queryable.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Resources.Reader.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.IsolatedStorage.dll
+C:\Users\junam\.nuget\packages\newtonsoft.json.bson\1.0.3\lib\netstandard2.0\Newtonsoft.Json.Bson.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.CompilerServices.VisualC.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Drawing.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.AccessControl.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Handles.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.ServicePoint.dll
+C:\Users\junam\.nuget\packages\hexagen.runtime.com\1.1.9\lib\net9.0\HexaGen.Runtime.COM.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Tasks.Parallel.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Numerics.Vectors.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.AppContext.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Memory.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.ZipFile.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Concurrent.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.EventBasedAsync.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Tools.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.Brotli.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Globalization.Calendars.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Metadata.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Channels.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Data.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Http.Json.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Numerics.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.DataAnnotations.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.TextWriterTraceListener.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Serialization.Json.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Emit.ILGeneration.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.FileSystem.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\mscorlib.dll
+C:\Users\junam\.nuget\packages\hexa.net.shaderc\1.0.0\lib\net9.0\Hexa.NET.Shaderc.dll
+C:\Users\junam\.nuget\packages\k4os.compression.lz4.streams\1.3.8\lib\net6.0\K4os.Compression.LZ4.Streams.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.Watcher.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Resources.ResourceManager.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Timer.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.Linq.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.Extensions.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebHeaderCollection.dll
+C:\Users\junam\.nuget\packages\system.codedom\8.0.0\lib\net8.0\System.CodeDom.dll
+C:\Users\junam\.nuget\packages\hexaengine.core\1.0.0.1\lib\net9.0\HexaEngine.Core.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Csp.dll
+C:\Users\junam\.nuget\packages\hexa.net.imgui\2.2.6\lib\net9.0\Hexa.NET.ImGui.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.Annotations.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.Primitives.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.FileSystem.DriveInfo.dll
+C:\Users\junam\.nuget\packages\hexa.net.openal\1.2.2\lib\net9.0\Hexa.NET.OpenAL.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Algorithms.dll
+C:\Users\junam\.nuget\packages\hexa.net.assimp\1.0.3\lib\net9.0\Hexa.NET.Assimp.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebSockets.Client.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.TraceSource.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.RegularExpressions.dll
+C:\Users\junam\.nuget\packages\hexa.net.implot\2.2.6\lib\net9.0\Hexa.NET.ImPlot.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encoding.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Buffers.dll
+C:\Users\junam\.nuget\packages\k4os.hash.xxhash\1.0.8\lib\net6.0\K4os.Hash.xxHash.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebProxy.dll
+C:\Users\junam\.nuget\packages\hexa.net.imnodes\2.2.6\lib\net9.0\Hexa.NET.ImNodes.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Globalization.Extensions.dll
+C:\Users\junam\.nuget\packages\hardware.info\101.0.0\lib\netstandard2.0\Hardware.Info.dll
+C:\Users\junam\.nuget\packages\hexa.net.freetype\1.1.1\lib\net9.0\Hexa.NET.FreeType.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Runtime.InteropServices.JavaScript.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Globalization.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.Serialization.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.Compression.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Debug.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Primitives.dll
+C:\Users\junam\.nuget\packages\hexa.net.d3d12\1.0.6\lib\net9.0\Hexa.NET.D3D12.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.IO.UnmanagedMemoryStream.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.HttpListener.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Immutable.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.FileVersionInfo.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Web.HttpUtility.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.NameResolution.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.WebClient.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Reflection.DispatchProxy.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.ThreadPool.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Core.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XPath.XDocument.dll
+C:\Users\junam\.nuget\packages\microsoft.codeanalysis.scripting.common\4.12.0\lib\net8.0\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\junam\.nuget\packages\hexaengine.audio.common\1.0.0.1\lib\net9.0\HexaEngine.Audio.Common.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Parallel.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Web.dll
+C:\Users\junam\.nuget\packages\hexa.net.spirvcross\1.0.1\lib\net9.0\Hexa.NET.SPIRVCross.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.X509Certificates.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.TypeConverter.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XmlDocument.dll
+C:\Users\junam\.nuget\packages\hexa.net.sdl3\1.2.13\lib\net9.0\Hexa.NET.SDL3.dll
+C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.NonGeneric.dll

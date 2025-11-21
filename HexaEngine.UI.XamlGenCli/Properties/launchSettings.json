@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HexaEngine.UI.XamlGenCli": {
+      "commandName": "Project",
+      "commandLineArgs": "-rf \"C:\\Users\\junam\\source\\repos\\HexaEngine.UI\\HexaEngine.UI.XamlGenCli\\refs.txt\" -f \"C:\\Users\\junam\\source\\repos\\HexaEngine.UI\\TestApp\\Test.xaml\" -n \"TestApp\""
+    }
+  }
+}

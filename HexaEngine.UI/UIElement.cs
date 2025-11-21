@@ -68,7 +68,7 @@
 
         private void BuildRoute(EventRoute route)
         {
-            var current = Parent;
+            DependencyObject? current = this;
             while (current != null)
             {
                 if (current is UIElement element)
