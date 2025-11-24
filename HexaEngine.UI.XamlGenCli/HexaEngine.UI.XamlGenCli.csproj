@@ -16,4 +16,8 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\HexaEngine.UI.Markup\HexaEngine.UI.Markup.csproj" />
+	</ItemGroup>
+
 </Project>

@@ -5,7 +5,6 @@ namespace HexaEngine.UI.XamlGen
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using System.Runtime.InteropServices;
     using System.Text;
     using System.Xml;
 
@@ -117,7 +116,7 @@ namespace HexaEngine.UI.XamlGen
 
             // Parse XAML to find named elements
             using (StringReader stringReader = new(inputFileContents))
-            using (XmlReader reader = XmlReader.Create(stringReader))
+            using (var reader = XmlReader.Create(stringReader))
             {
                 while (reader.Read())
                 {

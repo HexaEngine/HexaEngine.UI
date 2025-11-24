@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="HexaEngine.UI.Markup/HexaEngine.UI.Markup.csproj" Id="1e822ae2-214e-4427-8305-2f44b35a75a2" />
   <Project Path="HexaEngine.UI.XamlGen/HexaEngine.UI.XamlGen.csproj" Id="554f4f7e-7c70-4b01-83b9-979fb5fa2f74" />
   <Project Path="HexaEngine.UI.XamlGenCli/HexaEngine.UI.XamlGenCli.csproj" />
   <Project Path="HexaEngine.UI/HexaEngine.UI.csproj" />

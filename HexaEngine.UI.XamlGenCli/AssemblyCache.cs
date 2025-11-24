@@ -20,6 +20,9 @@
         public static Type DependencyPropertyType = null!;
         public static Type RoutedEventType = null!;
         public static Type ContentPropertyAttributeType = null!;
+        public static Type ThicknessType = null!;
+        public static Type GridLengthType = null!;
+        public static Type BrushType = null!;
 
         public static void Init()
         {
@@ -30,6 +33,10 @@
             DependencyObjectType = UIAssembly.GetType("HexaEngine.UI.DependencyObject", true)!;
             DependencyPropertyType = UIAssembly.GetType("HexaEngine.UI.DependencyProperty", true)!;
             ContentPropertyAttributeType = UIAssembly.GetType("HexaEngine.UI.Markup.ContentPropertyAttribute", true)!;
+
+            ThicknessType = UIAssembly.GetType("HexaEngine.UI.Thickness", true)!;
+            GridLengthType = UIAssembly.GetType("HexaEngine.UI.Controls.GridLength", true)!;
+            BrushType = UIAssembly.GetType("HexaEngine.UI.Graphics.Brush", true)!;
         }
 
         public static void Clear()
@@ -54,6 +61,11 @@
                 ClrNamespace = clrNamespace,
                 AssemblyName = assemblyName
             };
+        }
+
+        public static bool TryGetNamespaceInfo(ReadOnlySpan<char> xmlPrefix, out NamespaceInfo nsInfo)
+        {
+            return namespaceMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(xmlPrefix, out nsInfo);
         }
 
         public static bool IsNamespaceRegistered(string xmlPrefix)

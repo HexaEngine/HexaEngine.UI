@@ -1,5 +1,6 @@
 namespace HexaEngine.UI.XamlGen
 {
+    using HexaEngine.UI.XamlGenCli.Converters;
     using System;
     using System.Collections.Generic;
 
@@ -11,11 +12,25 @@ namespace HexaEngine.UI.XamlGen
     {
         private static readonly Dictionary<Type, IValueConverter> typeConverters = new();
 
-        // Singleton converter instances - reuse, don't recreate!
-        private static readonly BrushConverter brushConverter = new();
+        static ValueConverter()
+        {
+            RegisterTypeConverter<TypeConverter, Type>();
+            RegisterTypeConverter<BrushConverter>(AssemblyCache.BrushType);
+            RegisterTypeConverter<ThicknessConverter>(AssemblyCache.ThicknessType);
+            RegisterTypeConverter<GridLengthConverter>(AssemblyCache.GridLengthType);
+        }
 
-        private static readonly ThicknessConverter thicknessConverter = new();
-        private static readonly GridLengthConverter gridLengthConverter = new();
+        public static void RegisterTypeConverter<TConverter, T>()
+            where TConverter : IValueConverter, new()
+        {
+            RegisterTypeConverter<TConverter>(typeof(T));
+        }
+
+        public static void RegisterTypeConverter<TConverter>(Type type)
+            where TConverter : IValueConverter, new()
+        {
+            RegisterTypeConverter(type, new TConverter());
+        }
 
         /// <summary>
         /// Registers a converter for a specific Type.
@@ -42,54 +57,8 @@ namespace HexaEngine.UI.XamlGen
                 return converter.TryConvert(value, out code);
             }
 
-            // Check by type name as last resort (for when assemblies aren't loaded yet)
-            // Use singleton instances - NEVER create new ones!
-            string typeName = propertyType.Name;
-            IValueConverter nameBasedConverter = typeName switch
-            {
-                "Brush" or "SolidColorBrush" => brushConverter,
-                "Thickness" => thicknessConverter,
-                "GridLength" => gridLengthConverter,
-                _ => null
-            };
-
-            if (nameBasedConverter != null)
-            {
-                // Cache it for future use
-                typeConverters[propertyType] = nameBasedConverter;
-                return nameBasedConverter.TryConvert(value, out code);
-            }
-
             code = null;
             return false;
-        }
-
-        /// <summary>
-        /// Ensures common converters are registered for a loaded assembly.
-        /// Call this after loading an assembly via reflection.
-        /// </summary>
-        public static void EnsureCommonConvertersRegistered(Type[] types)
-        {
-            foreach (var type in types)
-            {
-                if (typeConverters.ContainsKey(type))
-                    continue;
-
-                // Register based on actual Type identity, not name
-                // Use singleton instances - NEVER create new ones!
-                if (type.Name == "Brush" || type.Name == "SolidColorBrush")
-                {
-                    typeConverters[type] = brushConverter;
-                }
-                else if (type.Name == "Thickness")
-                {
-                    typeConverters[type] = thicknessConverter;
-                }
-                else if (type.Name == "GridLength")
-                {
-                    typeConverters[type] = gridLengthConverter;
-                }
-            }
         }
 
         public static string Convert(string value, ReadOnlySpan<char> propertyName, ReadOnlySpan<char> targetTypeName, ReadOnlySpan<char> xmlPrefix)

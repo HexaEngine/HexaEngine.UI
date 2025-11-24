@@ -1,5 +1,11 @@
 <UIWindow
     xmlns="http://hexaengine.com/ui/v0/xaml" Title="MainWindow" Height="720" Width="1280" Background="#2C2C2CFF">
+	<UIWindow.Resources>
+		<Style TargetType="Label">
+			<Setter Property="Foreground" Value="#FFFFFF" />
+			<Setter Property="FontFamilyName" Value="Cascadia Mono" />
+		</Style>
+	</UIWindow.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
@@ -13,7 +19,7 @@
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">
 			<Label Margin="0,0,0,0" Foreground="#FFFFFF" FontSize="20" FontFamilyName="Cascadia Mono">StackItem 1</Label>
-			<Label Margin="0,0,0,0" Foreground="#FFFFFF"  FontFamilyName="Cascadia Mono">StackItem 2</Label>
+			<Label Margin="0" Foreground="#FFFFFF"  FontFamilyName="Cascadia Mono">StackItem 2</Label>
 			<Label Margin="0,0,0,0" Foreground="#FFFFFF"  FontFamilyName="Cascadia Mono">StackItem 3</Label>
 			<TextBox MinWidth="100" MinHeight="40" WordWrapping="Wrap" />
 			<Button Click="OnButtonClick">Test</Button>

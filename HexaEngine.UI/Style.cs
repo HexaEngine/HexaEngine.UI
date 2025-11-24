@@ -2,6 +2,20 @@
 {
     using HexaEngine.UI.Markup;
     using System;
+    using System.Collections.ObjectModel;
+
+    public class Setter
+    {
+        public DependencyProperty TargetProperty { get; set; } = null!;
+
+        public string Property { get; set; } = null!;
+
+        public object? Value { get; set; }
+    }
+
+    public class SetterCollection : ObservableCollection<Setter>
+    {
+    }
 
     [ContentProperty("Setters")]
     [DictionaryKeyProperty("TargetType")]
@@ -27,6 +41,8 @@
 
         [Ambient]
         public Style? BasedOn { get; set; }
+
+        public SetterCollection Setters { get; } = [];
 
         public void RegisterName(string name, object scopedElement)
         {

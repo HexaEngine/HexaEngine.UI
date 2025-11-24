@@ -24,6 +24,10 @@ namespace TestApp
             this.Height = 720;
             this.Width = 1280;
             this.Background = new SolidColorBrush(new Color(0x2C2C2CFF));
+            this.Resources.Add(new Style()
+            {
+                TargetType = typeof(Label),
+            });
             Grid element0 = new();
             element0.ColumnDefinitions.Add(new ColumnDefinition());
             element0.ColumnDefinitions.Add(new ColumnDefinition());
@@ -43,7 +47,7 @@ namespace TestApp
             element2.Content = "StackItem 1";
             element1.Children.Add(element2);
             Label element3 = new();
-            element3.Margin = new Thickness(0, 0, 0, 0);
+            element3.Margin = new Thickness(0);
             element3.Foreground = new SolidColorBrush(new Color(0xFFFFFFFF));
             element3.FontFamilyName = "Cascadia Mono";
             element3.Content = "StackItem 2";
