@@ -7,7 +7,7 @@ namespace HexaEngine.UI.XamlGen
     /// <summary>
     /// Provides logging functionality for the HexaEngine.UI XAML Generator extension.
     /// </summary>
-    internal static class Logger
+    public static class Logger
     {
         private const string LogSource = "HexaEngine.UI.XamlGen";
         private static readonly Lock lockObj = new();

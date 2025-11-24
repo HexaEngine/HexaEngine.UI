@@ -9,7 +9,7 @@ namespace HexaEngine.UI.XamlGen
     using System.Reflection;
     using System.Xml.Linq;
 
-    internal class AssemblyCache
+    public class AssemblyCache
     {
         private static readonly Dictionary<string, AssemblyCacheEntry> assemblyCache = [];
         private static readonly Dictionary<string, NamespaceInfo> namespaceMap = [];
