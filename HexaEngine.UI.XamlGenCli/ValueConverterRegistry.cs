@@ -1,3 +1,5 @@
+using HexaEngine.UI.XamlGenCli;
+
 namespace HexaEngine.UI.XamlGen
 {
     using HexaEngine.UI.XamlGenCli.Converters;
@@ -61,19 +63,19 @@ namespace HexaEngine.UI.XamlGen
             return false;
         }
 
-        public static string Convert(string value, ReadOnlySpan<char> propertyName, ReadOnlySpan<char> targetTypeName, ReadOnlySpan<char> xmlPrefix)
+        public static string Convert(string value, ReadOnlySpan<char> propertyName, XamlTypeName typeName)
         {
             if (string.IsNullOrEmpty(value))
             {
                 return "null";
             }
 
-            Type? propertyType = AssemblyCache.GetPropertyType(targetTypeName, propertyName, xmlPrefix);
+            Type? propertyType = AssemblyCache.GetPropertyType(typeName, propertyName);
 
             if (propertyType == null)
             {
                 // No type info available - this is an ERROR, not a silent fallback
-                throw new InvalidOperationException($"Could not determine type for property '{propertyName}' on type '{targetTypeName}'");
+                throw new InvalidOperationException($"Could not determine type for property '{propertyName}' on type '{typeName.Name}'");
             }
 
             return Convert(value, propertyType, propertyName);

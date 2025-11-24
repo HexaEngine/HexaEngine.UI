@@ -66,6 +66,7 @@ namespace HexaEngine.UI.XamlGen
             ProcessStartInfo psi = new("C:\\Users\\junam\\source\\repos\\HexaEngine.UI\\HexaEngine.UI.XamlGenCli\\bin\\Publish\\HexaXamlGenCli.exe")
             {
                 UseShellExecute = false,
+                CreateNoWindow = true,
                 Arguments = $"-f \"{wszInputFilePath}\" -n \"{wszDefaultNamespace}\" -rf \"{tempFile}\" -o \"{outputFile}\"",
             };
 

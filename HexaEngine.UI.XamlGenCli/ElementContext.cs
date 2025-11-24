@@ -1,12 +1,13 @@
 ﻿#nullable enable
 
+using HexaEngine.UI.XamlGenCli;
+
 namespace HexaEngine.UI.XamlGen
 {
     public struct ElementContext
     {
         public string VariableName;
-        public string TypeName;
-        public string XmlPrefix;
+        public XamlTypeName TypeName;
         public bool IsRoot;
         public bool IsPropertyElement;
         public string PropertyName;

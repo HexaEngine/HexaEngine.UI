@@ -1,5 +1,7 @@
 ﻿#nullable enable
 
+using HexaEngine.UI.XamlGenCli;
+
 namespace HexaEngine.UI.XamlGen
 {
     using System;
@@ -8,7 +10,7 @@ namespace HexaEngine.UI.XamlGen
     using System.Text;
     using System.Xml;
 
-    public class XmlCodeGenerator
+    public class XamlCodeGenerator
     {
         private static void ParseXmlnsDeclaration(string prefix, string uri)
         {
@@ -167,7 +169,7 @@ namespace HexaEngine.UI.XamlGen
         {
             int elementIndex = 0;
             Stack<ElementContext> stack = new();
-            ElementContext currentContext = new() { VariableName = "this", IsRoot = true, TypeName = rootTypeName, XmlPrefix = "" };
+            ElementContext currentContext = new() { VariableName = "this", IsRoot = true, TypeName = new(rootTypeName) };
             StringReader stringReader = new(inputFileContents);
             var reader = XmlReader.Create(stringReader);
 
@@ -190,7 +192,6 @@ namespace HexaEngine.UI.XamlGen
                                 {
                                     VariableName = currentContext.VariableName,
                                     TypeName = currentContext.TypeName,
-                                    XmlPrefix = currentContext.XmlPrefix,
                                     IsPropertyElement = true,
                                     PropertyName = elementName[(elementName.IndexOf('.') + 1)..]
                                 };
@@ -200,8 +201,7 @@ namespace HexaEngine.UI.XamlGen
                             continue;
                         }
 
-                        string typeName = ParseTypeName(elementName);
-                        string xmlPrefix = GetXmlPrefix(elementName);
+                        XamlTypeName typeName = new(elementName);
                         string nameValue = reader.GetAttribute("Name");
                         string variableName = null;
 
@@ -212,11 +212,11 @@ namespace HexaEngine.UI.XamlGen
                         else if (!string.IsNullOrEmpty(nameValue))
                         {
                             variableName = nameValue;
-                            writer.WriteLine($"{variableName} = new {typeName}();");
+                            writer.WriteLine($"{variableName} = new {typeName.Name}();");
                         }
                         else if (currentContext.IsPropertyElement)
                         {
-                            writer.Write($"{currentContext.VariableName}.{currentContext.PropertyName}.Add(new {typeName}()");
+                            writer.Write($"{currentContext.VariableName}.{currentContext.PropertyName}.Add(new {typeName.Name}()");
 
                             // Add properties inline if any
                             bool hasProperties = false;
@@ -237,7 +237,7 @@ namespace HexaEngine.UI.XamlGen
 
                                     string propertyName = reader.Name;
                                     string propertyValue = reader.Value;
-                                    writer.WriteLine($"{propertyName} = {ValueConverter.Convert(propertyValue, propertyName, typeName, xmlPrefix)},");
+                                    writer.WriteLine($"{propertyName} = {ValueConverter.Convert(propertyValue, propertyName, typeName)},");
                                 }
                                 reader.MoveToElement();
                             }
@@ -258,7 +258,7 @@ namespace HexaEngine.UI.XamlGen
                             }
 
                             stack.Push(currentContext);
-                            currentContext = new() { VariableName = null!, TypeName = typeName, XmlPrefix = xmlPrefix, IsDefinition = true };
+                            currentContext = new() { VariableName = null!, TypeName = typeName, IsDefinition = true };
                             continue;
                         }
                         else
@@ -286,7 +286,7 @@ namespace HexaEngine.UI.XamlGen
                                 {
                                     var ownerType = propertyName.AsSpan(0, idx);
                                     var propName = propertyName.AsSpan(idx + 1);
-                                    var typeInfo = AssemblyCache.GetType(xmlPrefix, ownerType)!;
+                                    var typeInfo = AssemblyCache.GetType(new XamlTypeName(ownerType.ToString()))!;
                                     if (typeInfo.TryGetProperty(propName, out var propInfo))
                                     {
                                         writer.WriteLine($"{variableName}.SetValue({ownerType}.{propInfo.Field!.Name}, {ValueConverter.Convert(propertyValue, propInfo.PropertyType, propName)});");
@@ -298,7 +298,7 @@ namespace HexaEngine.UI.XamlGen
                                 }
                                 else
                                 {
-                                    var typeInfo = AssemblyCache.GetType(xmlPrefix, typeName)!;
+                                    var typeInfo = AssemblyCache.GetType(typeName)!;
                                     if (typeInfo.TryGetProperty(propertyName, out var propInfo))
                                     {
                                         writer.WriteLine($"{variableName}.{propertyName} = {ValueConverter.Convert(propertyValue, propInfo.PropertyType, propertyName)};");
@@ -315,7 +315,7 @@ namespace HexaEngine.UI.XamlGen
                         if (!reader.IsEmptyElement && variableName != null)
                         {
                             stack.Push(currentContext);
-                            currentContext = new() { VariableName = variableName, TypeName = typeName, XmlPrefix = xmlPrefix };
+                            currentContext = new() { VariableName = variableName, TypeName = typeName };
                         }
 
                         break;
@@ -327,7 +327,7 @@ namespace HexaEngine.UI.XamlGen
                             string textValue = reader.Value.Trim();
 
                             // Get the content property name dynamically
-                            string contentProperty = AssemblyCache.GetContentPropertyName(currentContext.TypeName, currentContext.XmlPrefix) ?? throw new InvalidOperationException();
+                            string contentProperty = AssemblyCache.GetContentPropertyName(currentContext.TypeName) ?? throw new InvalidOperationException();
                             writer.WriteLine($"{currentContext.VariableName}.{contentProperty} = \"{textValue}\";");
                         }
                         break;
@@ -351,7 +351,7 @@ namespace HexaEngine.UI.XamlGen
                             ElementContext parentContext = stack.Peek();
                             if (!parentContext.IsRoot)
                             {
-                                var typeInfo = AssemblyCache.GetType(parentContext.XmlPrefix, parentContext.TypeName);
+                                var typeInfo = AssemblyCache.GetType(parentContext.TypeName);
 
                                 if (typeInfo.ContentProperty != null)
                                 {

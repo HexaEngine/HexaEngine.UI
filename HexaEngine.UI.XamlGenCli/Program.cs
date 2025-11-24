@@ -92,7 +92,7 @@ Logger.LogInfo("Starting generation...");
 string output;
 try
 {
-    XmlCodeGenerator generator = new();
+    XamlCodeGenerator generator = new();
     output = generator.GenerateCode(className, input, defaultNamespace);
 }
 catch (Exception ex)

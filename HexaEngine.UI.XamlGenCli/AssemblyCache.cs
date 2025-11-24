@@ -1,4 +1,6 @@
-﻿namespace HexaEngine.UI.XamlGen
+﻿using HexaEngine.UI.XamlGenCli;
+
+namespace HexaEngine.UI.XamlGen
 {
     using System;
     using System.Collections.Generic;
@@ -89,9 +91,9 @@
             return cachedAssembly;
         }
 
-        public static TypeInfo? GetType(ReadOnlySpan<char> xmlPrefix, ReadOnlySpan<char> typeName)
+        public static TypeInfo? GetType(in XamlTypeName typeName)
         {
-            if (!namespaceMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(xmlPrefix, out NamespaceInfo nsInfo))
+            if (!namespaceMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(typeName.Namespace, out NamespaceInfo nsInfo))
             {
                 return null;
             }
@@ -104,21 +106,21 @@
             return assembly.Value.GetType(new(typeName.ToString(), nsInfo.ClrNamespace));
         }
 
-        public static string? GetContentPropertyName(ReadOnlySpan<char> typeName, ReadOnlySpan<char> xmlPrefix)
+        public static string? GetContentPropertyName(in XamlTypeName typeName)
         {
-            var info = GetType(xmlPrefix, typeName);
+            var info = GetType(typeName);
             return info?.ContentProperty;
         }
 
-        public static Type? GetPropertyType(ReadOnlySpan<char> typeName, ReadOnlySpan<char> propertyName, ReadOnlySpan<char> xmlPrefix)
+        public static Type? GetPropertyType(in XamlTypeName typeName, ReadOnlySpan<char> propertyName)
         {
-            var type = GetType(xmlPrefix, typeName);
+            var type = GetType(typeName);
             return type?.GetProperty(propertyName).PropertyType;
         }
 
-        public static XamlPropertyInfo? GetPropertyInfo(ReadOnlySpan<char> typeName, ReadOnlySpan<char> propertyName, ReadOnlySpan<char> xmlPrefix)
+        public static XamlPropertyInfo? GetPropertyInfo(in XamlTypeName typeName, ReadOnlySpan<char> propertyName)
         {
-            var type = GetType(xmlPrefix, typeName);
+            var type = GetType(typeName);
             return type?.GetProperty(propertyName);
         }
     }
