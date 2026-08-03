@@ -225,7 +225,7 @@ namespace HexaEngine.UI
 
         private bool TryGetStringValue(ReadOnlySpan<char> key, out object? value)
         {
-            Dictionary<object, object?>.AlternateLookup<ReadOnlySpan<char>> lookup = resources.GetAlternateLookup<ReadOnlySpan<char>>();
+            var lookup = resources.GetAlternateLookup<ReadOnlySpan<char>>();
             if (lookup.TryGetValue(key, out value))
             {
                 return true;

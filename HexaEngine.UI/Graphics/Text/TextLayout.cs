@@ -234,7 +234,7 @@
                         }
 
                         // +1 to skip the space.
-                        i = j + 1;
+                        i = j;
 
                         if (EmitLine(ref penX, ref penY, lineHeight, ref span, j))
                         {
