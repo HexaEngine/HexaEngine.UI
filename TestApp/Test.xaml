@@ -1,11 +1,11 @@
-<UIWindow
+<Window
     xmlns="http://hexaengine.com/ui/v0/xaml" Title="MainWindow" Height="720" Width="1280" Background="#2C2C2CFF">
-	<UIWindow.Resources>
+	<Window.Resources>
 		<Style TargetType="Label">
 			<Setter Property="Foreground" Value="#FFFFFF" />
 			<Setter Property="FontFamilyName" Value="Cascadia Mono" />
 		</Style>
-	</UIWindow.Resources>
+	</Window.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition />
@@ -25,4 +25,4 @@
 			<Button Click="OnButtonClick">Test</Button>
 		</StackPanel>
 	</Grid>
-</UIWindow>
+</Window>

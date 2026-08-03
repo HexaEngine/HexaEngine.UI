@@ -6,7 +6,7 @@
     using HexaEngine.UI.Controls;
     using System.Numerics;
 
-    public class UIWindow : ContentControl, IChildContainer, IDisposable
+    public class Window : ContentControl, IChildContainer, IDisposable
     {
         private UIElement? mouseFocused;
         private bool disposedValue;
@@ -14,11 +14,11 @@
         private bool hovered;
         private Matrix3x2 inputTransform = Matrix3x2.Identity;
 
-        public static readonly DependencyProperty<Color> BackgroundColorProperty = DependencyProperty.Register<UIWindow, Color>(nameof(BackgroundColor), false, new FrameworkMetadata(Colors.White) { AffectsRender = true });
+        public static readonly DependencyProperty<Color> BackgroundColorProperty = DependencyProperty.Register<Window, Color>(nameof(BackgroundColor), false, new FrameworkMetadata(Colors.White) { AffectsRender = true });
 
         public Color BackgroundColor { get; set; } = Colors.White;
 
-        public static readonly DependencyProperty<string?> TitleProperty = DependencyProperty.Register<UIWindow, string?>(nameof(Title), false, new FrameworkMetadata() { AffectsRender = true });
+        public static readonly DependencyProperty<string?> TitleProperty = DependencyProperty.Register<Window, string?>(nameof(Title), false, new FrameworkMetadata() { AffectsRender = true });
 
         public string? Title { get; set; }
 
@@ -32,11 +32,11 @@
 
         public event EventHandler? OnInvalidateVisual;
 
-        public UIWindow()
+        public Window()
         {
         }
 
-        public UIWindow(string title, float width, float height)
+        public Window(string title, float width, float height)
         {
             Title = title;
             Children = new(this);

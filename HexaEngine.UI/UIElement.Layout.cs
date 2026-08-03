@@ -92,7 +92,7 @@
                 return;
             }
 
-            ResolveObject<UIWindow>()?.InvalidateArrange();
+            ResolveObject<Window>()?.InvalidateArrange();
         }
 
         public virtual void InvalidateMeasure()
@@ -102,7 +102,7 @@
                 return;
             }
 
-            ResolveObject<UIWindow>()?.InvalidateMeasure();
+            ResolveObject<Window>()?.InvalidateMeasure();
         }
 
         public virtual void InvalidateVisual()
@@ -112,7 +112,7 @@
                 return;
             }
 
-            ResolveObject<UIWindow>()?.InvalidateVisual();
+            ResolveObject<Window>()?.InvalidateVisual();
         }
 
         public void Measure(Vector2 availableSize)

@@ -1,16 +1,16 @@
-﻿using HexaEngine.UI.XamlGenCli;
+﻿using Hexa.NET.Logging;
+using HexaEngine.UI.XamlGenCli;
 
 namespace HexaEngine.UI.XamlGen
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.IO;
     using System.Reflection;
-    using System.Xml.Linq;
 
     public class AssemblyCache
     {
+        private static readonly ILogger Logger = LoggerFactory.GetLogger(nameof(AssemblyCache));
         private static readonly Dictionary<string, AssemblyCacheEntry> assemblyCache = [];
         private static readonly Dictionary<string, NamespaceInfo> namespaceMap = [];
         private static readonly Dictionary<string, string> assemblyPaths = [];
@@ -56,6 +56,7 @@ namespace HexaEngine.UI.XamlGen
         {
             return assemblyPaths.TryGetValue(assemblyName, out path);
         }
+
         public static void RegisterNamespace(string xmlPrefix, string clrNamespace, string assemblyName)
         {
             namespaceMap[xmlPrefix] = new()
@@ -83,7 +84,7 @@ namespace HexaEngine.UI.XamlGen
             if (assemblyCache.TryGetValue(assemblyName, out var cachedAssembly))
                 return cachedAssembly;
 
-            Logger.LogInfo($"Loading assembly: {assemblyName}");
+            Logger.Info($"Loading assembly: {assemblyName}");
             Assembly assembly = loadContext.LoadFromAssemblyName(new AssemblyName(assemblyName));
 
             cachedAssembly = new(assembly);
@@ -93,10 +94,12 @@ namespace HexaEngine.UI.XamlGen
 
         public static TypeInfo? GetType(in XamlTypeName typeName)
         {
-            if (!namespaceMap.GetAlternateLookup<ReadOnlySpan<char>>().TryGetValue(typeName.Namespace, out NamespaceInfo nsInfo))
+            if (!namespaceMap.GetAlternateLookup<ReadOnlySpan<char>>()
+                    .TryGetValue(typeName.Namespace, out NamespaceInfo nsInfo))
             {
                 return null;
             }
+
             var assembly = LoadAssembly(nsInfo.AssemblyName);
             if (assembly == null)
             {

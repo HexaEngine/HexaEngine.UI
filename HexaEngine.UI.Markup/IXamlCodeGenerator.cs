@@ -11,6 +11,6 @@ namespace HexaEngine.UI.Markup
 
     public interface IXamlCodeGenerator
     {
-        public void GenerateCode(CodeWriter writer, XmlReader reader);
+        public void GenerateCode(CodeWriter writer, XmlReader reader, XamlCodeGenContext context);
     }
 }

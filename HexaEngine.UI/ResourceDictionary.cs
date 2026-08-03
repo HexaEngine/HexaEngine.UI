@@ -11,7 +11,7 @@
     [UsableDuringInitialization(true)]
     public class ResourceDictionary : IDictionary, ISupportInitialize, INameScope, IUriContext
     {
-        private static readonly Hashtable hashtable = [];
+        private static readonly Dictionary<object, object> hashtable = [];
         private bool initialized = false;
         private ResourceDictionaryCollection? _mergedDictionaries;
         private Uri source;
@@ -27,9 +27,9 @@
             set => hashtable[key] = value;
         }
 
-        public bool IsFixedSize => hashtable.IsFixedSize;
+        public bool IsFixedSize => false;
 
-        public bool IsReadOnly => hashtable.IsReadOnly;
+        public bool IsReadOnly => false;
 
         public ICollection Keys => hashtable.Keys;
 
@@ -37,9 +37,9 @@
 
         public int Count => hashtable.Count;
 
-        bool ICollection.IsSynchronized => hashtable.IsSynchronized;
+        bool ICollection.IsSynchronized => ((ICollection)hashtable).IsSynchronized;
 
-        object ICollection.SyncRoot => hashtable.SyncRoot;
+        object ICollection.SyncRoot => ((ICollection)hashtable).SyncRoot;
 
         Uri IUriContext.BaseUri { get; set; }
 

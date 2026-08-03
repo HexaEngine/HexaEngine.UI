@@ -6,7 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<AssemblyName>HexaXamlGenCli</AssemblyName>
+		<AssemblyName>HexaXamlGen</AssemblyName>
 
 
 		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>

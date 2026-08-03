@@ -16,7 +16,7 @@ using Hexa.NET.Mathematics;
 
 namespace TestApp
 {
-    public partial class Test : UIWindow
+    public partial class Test : Window
     {
         public override void InitializeComponent()
         {

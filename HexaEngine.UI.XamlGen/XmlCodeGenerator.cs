@@ -3,20 +3,16 @@
 namespace HexaEngine.UI.XamlGen
 {
     using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.MSBuild;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.ComponentModelHost;
-    using Microsoft.VisualStudio.Shell;
     using Microsoft.VisualStudio.Shell.Design.Serialization;
     using Microsoft.VisualStudio.Shell.Interop;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Runtime.InteropServices;
     using System.Text;
-    using System.Xml;
     using VSLangProj80;
     using ServiceProvider = Microsoft.VisualStudio.Shell.ServiceProvider;
 

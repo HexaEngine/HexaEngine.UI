@@ -57,6 +57,10 @@
 		<None Include="build\HexaEngine.UI.targets" Pack="true" PackagePath="build;buildTransitive" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\HexaEngine.UI.Markup\HexaEngine.UI.Markup.csproj" />
+	</ItemGroup>
+
 	<!-- Target to run HexaAssetTool before build -->
 	<Target Name="GenerateAssets" BeforeTargets="BeforeBuild">
 		<Exec Command="HexaAssetTool.exe -m MultiCreate -p &quot;./&quot;" WorkingDirectory="$(ProjectDir)assets" />

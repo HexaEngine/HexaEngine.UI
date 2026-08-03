@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
+
+using Hexa.NET.Logging;
 using HexaEngine.UI.XamlGen;
 
-Logger.Init();
+ILogger Logger = LoggerFactory.General;
 
 string? className = null;
 string? defaultNamespace = null;
@@ -62,9 +64,9 @@ for (int i = 0; i < args.Length; i++)
     }
 }
 
-Logger.LogInfo($"Output File: {outputFile}");
-Logger.LogInfo($"Namespace: {defaultNamespace}");
-Logger.LogInfo($"Class Name: {className}");
+Logger.Info($"Output File: {outputFile}");
+Logger.Info($"Namespace: {defaultNamespace}");
+Logger.Info($"Class Name: {className}");
 
 
 if (input == null)
@@ -87,7 +89,7 @@ if (defaultNamespace == null)
 
 AssemblyCache.Init();
 
-Logger.LogInfo("Starting generation...");
+Logger.Info("Starting generation...");
 
 string output;
 try
@@ -97,17 +99,16 @@ try
 }
 catch (Exception ex)
 {
-    Logger.LogError("Generation failed.", ex);
+    Logger.Error("Generation failed.");
+    Logger.Log(ex);
     throw;
 }
 
 
-Logger.LogInfo("Generation complete.");
-Logger.LogInfo(output);
+Logger.Info("Generation complete.");
+Logger.Info(output);
 if (outputFile != null)
 {
-    Logger.LogInfo("Writing to output file...");
+    Logger.Info("Writing to output file...");
     File.WriteAllText(outputFile, output);
 }
-
-Logger.Shutdown();

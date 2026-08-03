@@ -127,6 +127,11 @@ namespace HexaEngine.UI.XamlGen
                 return $"\"{value}\"";
             }
 
+            if (propertyType == typeof(object))
+            {
+                return value;
+            }
+
             // Unknown type - this is an ERROR
             throw new NotSupportedException($"No converter registered for property '{propertyName}' of type '{propertyType.FullName}'");
         }

@@ -24,7 +24,7 @@
         private UICommandList commandList;
         private Texture2D compositionTexture;
 
-        private UIWindow window;
+        private Window window;
         private ISwapChain swapChain;
         private bool resetTime;
         private bool resize;
@@ -48,7 +48,6 @@
 
             compositionTexture = new(swapChain.Backbuffer.Description.Format, Width, Height, 1, 1, CpuAccessFlags.None, GpuAccessFlags.RW);
 
-            
             MakeUI();
 
             Show();
@@ -75,7 +74,6 @@
             invalidate = true;
         }
 
-
         protected override void OnExposed(ExposedEventArgs args)
         {
             base.OnExposed(args);
@@ -94,7 +92,6 @@
             base.OnMoved(args);
             window?.SetInputTransform(ComputeInputTransform(args.NewX, args.NewY));
         }
-       
 
         /// <summary>
         /// Renders the content of the window using the specified graphics context.
@@ -151,7 +148,6 @@
                      (R + L) / (L - R), (T + B) / (B - T), 0.5f, 1.0f
                      );
 
-                // End the ImGui frame rendering.
                 uirenderer?.RenderDrawData(context, swapChain.Viewport, mvp, commandList);
 
                 context.CopyResource(swapChain.Backbuffer, compositionTexture);

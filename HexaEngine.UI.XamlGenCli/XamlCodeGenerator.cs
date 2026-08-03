@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
-using HexaEngine.UI.XamlGenCli;
+
+using HexaEngine.UI.Markup;
 
 namespace HexaEngine.UI.XamlGen
 {
@@ -9,14 +10,17 @@ namespace HexaEngine.UI.XamlGen
     using System.IO;
     using System.Text;
     using System.Xml;
+    using Hexa.NET.Logging;
+    using HexaEngine.UI.XamlGenCli;
 
     public class XamlCodeGenerator
     {
+        private static readonly ILogger Logger = LoggerFactory.GetLogger(nameof(XamlCodeGenerator));
         private static void ParseXmlnsDeclaration(string prefix, string uri)
         {
             if (AssemblyCache.IsNamespaceRegistered(prefix))
             {
-                Logger.LogInfo($"Namespace prefix '{prefix}' already registered, skipping");
+                Logger.Info($"Namespace prefix '{prefix}' already registered, skipping");
                 return;
             }
 
@@ -47,28 +51,28 @@ namespace HexaEngine.UI.XamlGen
 
                 if (assemblyName == null)
                 {
-                    Logger.LogError($"Assembly name missing in xmlns URI: '{uri}'");
+                    Logger.Error($"Assembly name missing in xmlns URI: '{uri}'");
                     throw new NotSupportedException($"Assembly name missing in xmlns URI: '{uri}'");
                 }
 
-                Logger.LogInfo($"Registering CLR namespace: prefix='{prefix}', namespace='{clrNamespace}', assembly='{assemblyName}'");
+                Logger.Error($"Registering CLR namespace: prefix='{prefix}', namespace='{clrNamespace}', assembly='{assemblyName}'");
                 AssemblyCache.RegisterNamespace(prefix, clrNamespace, assemblyName);
             }
             else if (uri.StartsWith("http://hexaengine.com/ui/v0/xaml"))
             {
-                Logger.LogInfo($"Registering default HexaEngine.UI namespace for prefix '{prefix}'");
+                Logger.Info($"Registering default HexaEngine.UI namespace for prefix '{prefix}'");
                 AssemblyCache.RegisterNamespace(prefix, "*", "HexaEngine.UI");
             }
             else
             {
-                Logger.LogError($"Unsupported xmlns URI: '{uri}'");
+                Logger.Error($"Unsupported xmlns URI: '{uri}'");
                 throw new NotSupportedException($"Unsupported xmlns URI: '{uri}'");
             }
         }
 
         public string GenerateCode(string className, string inputFileContents, string defaultNamespace)
         {
-            Logger.LogInfo($"Generating code for class: {className} in namespace: {defaultNamespace}");
+            Logger.Info($"Generating code for class: {className} in namespace: {defaultNamespace}");
 
             // Clear namespace map for this generation
             AssemblyCache.Clear();
@@ -87,13 +91,13 @@ namespace HexaEngine.UI.XamlGen
                             {
                                 if (reader.Name == "xmlns")
                                 {
-                                    Logger.LogInfo($"Registering default xmlns: {reader.Value}");
+                                    Logger.Info($"Registering default xmlns: {reader.Value}");
                                     ParseXmlnsDeclaration("", reader.Value);
                                 }
                                 else if (reader.Name.StartsWith("xmlns:"))
                                 {
                                     string prefix = reader.Name.Substring(6);
-                                    Logger.LogInfo($"Registering xmlns prefix '{prefix}': {reader.Value}");
+                                    Logger.Info($"Registering xmlns prefix '{prefix}': {reader.Value}");
                                     ParseXmlnsDeclaration(prefix, reader.Value);
                                 }
                             }
@@ -131,13 +135,13 @@ namespace HexaEngine.UI.XamlGen
                         {
                             string typeName = ParseTypeName(reader.Name);
                             namedElements.Add(new NamedElement { TypeName = typeName, Name = nameValue });
-                            Logger.LogInfo($"Found named element: {nameValue} of type {typeName}");
+                            Logger.Info($"Found named element: {nameValue} of type {typeName}");
                         }
                     }
                 }
             }
 
-            Logger.LogInfo($"Root type: {rootTypeName}, Named elements: {namedElements.Count}");
+            Logger.Info($"Root type: {rootTypeName}, Named elements: {namedElements.Count}");
 
             using (writer.PushBlock($"public partial class {className} : {rootTypeName}"))
             {
@@ -161,7 +165,7 @@ namespace HexaEngine.UI.XamlGen
 
             writer.Dispose(); // VERY IMPORTANT: Dispose the writer to end the namespace block without it the last '}' would be missing.
 
-            Logger.LogInfo($"Code generation completed successfully for {className}");
+            Logger.Info($"Code generation completed successfully for {className}");
             return writer.ToString();
         }
 
@@ -169,11 +173,15 @@ namespace HexaEngine.UI.XamlGen
         {
             int elementIndex = 0;
             Stack<ElementContext> stack = new();
-            ElementContext currentContext = new() { VariableName = "this", IsRoot = true, TypeName = new(rootTypeName) };
+
+            XamlCodeGenContext ctx = new();
+            ctx.CurrentElement = new() { VariableName = "this", IsRoot = true, TypeName = new(rootTypeName) };
             StringReader stringReader = new(inputFileContents);
             var reader = XmlReader.Create(stringReader);
 
             Queue<string> eventHandlerQueue = new();
+
+            ref var currentContext = ref ctx.CurrentElement;
 
             while (reader.Read())
             {
@@ -188,15 +196,13 @@ namespace HexaEngine.UI.XamlGen
                             // Property element like Grid.RowDefinitions
                             if (!reader.IsEmptyElement)
                             {
-                                ElementContext propertyContext = new()
+                                ctx.PushElement(new()
                                 {
-                                    VariableName = currentContext.VariableName,
-                                    TypeName = currentContext.TypeName,
+                                    VariableName = ctx.CurrentElement.VariableName,
+                                    TypeName = ctx.CurrentElement.TypeName,
                                     IsPropertyElement = true,
                                     PropertyName = elementName[(elementName.IndexOf('.') + 1)..]
-                                };
-                                stack.Push(currentContext);
-                                currentContext = propertyContext;
+                                });
                             }
                             continue;
                         }
