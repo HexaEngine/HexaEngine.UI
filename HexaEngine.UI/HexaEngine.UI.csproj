@@ -34,7 +34,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="HexaEngine.Core" Version="1.0.0.1" />
+	  <PackageReference Include="HexaEngine.Core" Version="1.0.0.2" />
 	  <PackageReference Include="HexaEngine.Sdk" Version="1.0.0" />
 	</ItemGroup>
 

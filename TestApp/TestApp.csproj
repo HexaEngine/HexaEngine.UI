@@ -21,8 +21,8 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HexaEngine.D3D11" Version="1.0.0.1" />
-    <PackageReference Include="HexaEngine.OpenAL" Version="1.0.0.1" />
+    <PackageReference Include="HexaEngine.D3D11" Version="1.0.0.2" />
+    <PackageReference Include="HexaEngine.MiniAudio" Version="1.0.0.2" />
   </ItemGroup>
 
   <ItemGroup>

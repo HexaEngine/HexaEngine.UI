@@ -48,9 +48,9 @@
 
             compositionTexture = new(swapChain.Backbuffer.Description.Format, Width, Height, 1, 1, CpuAccessFlags.None, GpuAccessFlags.RW);
 
-            MakeUI();
-
             Show();
+
+            MakeUI();
         }
 
         private static Matrix3x2 ComputeInputTransform(int x, int y)

@@ -90,8 +90,8 @@ namespace TestApp
             element5.Children.Add(element12);
             TextBox element18 = new();
             element18.Width = 120;
-            element18.Height = 200;
             element18.WordWrapping = WordWrapping.WrapWord;
+            element18.AcceptsReturn = true;
             element18.FontFamilyName = "Cascadia Mono";
             element18.Text = "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty";
             element5.Children.Add(element18);

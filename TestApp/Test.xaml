@@ -29,7 +29,7 @@
 			<TextBox MinWidth="100" MinHeight="40" WordWrapping="Wrap" />
 			<Button Click="OnButtonClick">Test</Button>
 		</StackPanel>
-		
-		<TextBox Width="120" Height="200" WordWrapping="WrapWord" FontFamilyName="Cascadia Mono">one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty</TextBox>
+
+		<TextBox Width="120" WordWrapping="WrapWord" AcceptsReturn="true" FontFamilyName="Cascadia Mono">one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty</TextBox>
 	</Grid>
 </Window>

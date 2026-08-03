@@ -3,7 +3,7 @@
     using HexaEngine.Core;
     using HexaEngine.Core.Graphics;
     using HexaEngine.D3D11;
-    using HexaEngine.OpenAL;
+    using HexaEngine.MiniAudio;
 
     public class Program
     {
@@ -12,7 +12,7 @@
             Application.Boot(GraphicsBackend.D3D11, HexaEngine.Core.Audio.AudioBackend.Auto);
             TestWindow window = new();
             DXGIAdapterD3D11.Init(window, Application.GraphicsDebugging);
-            OpenALAdapter.Init();
+            MiniAudioAdapter.Init();
             Application.Run(window);
         }
     }

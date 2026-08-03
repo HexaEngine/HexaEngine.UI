@@ -51,7 +51,7 @@
             }
         }
 
-        public TextLayoutMetrics Metrics => metrics;
+        public ref readonly TextLayoutMetrics Metrics => ref metrics;
 
         public float MaxWidth
         {
@@ -227,7 +227,7 @@
                         }
 
                         // no word found, don't wrap here to avoid empty lines.
-                        if (j == i || j == span.Start)
+                        if (j < span.Start)
                         {
                             penX = nextPositionX;
                             continue;
@@ -360,17 +360,11 @@
                 return default;
             }
 
-            float emSize = Font.EmSize;
-            float fontSize = Format.FontSize;
-            float lineHeight = Font.GetLineHeight(Format.FontSize);
-            float lineSpacing = Format.LineSpacing;
+            float lineHeight = GetLineHeight();
 
-            lineHeight += lineSpacing / emSize * fontSize;
-
-            float penX = 0;
             float penY = 0;
 
-            int selectedLineMetricsIndex = 0;
+            int selectedLineMetricsIndex = -1;
             LineMetrics selectedLineMetrics = default;
             for (int i = 0; i < metrics.LineMetrics.Count; i++)
             {
@@ -384,40 +378,43 @@
                 penY += lineHeight;
             }
 
-            if (selectedLineMetrics.Length == 0)
+            if (selectedLineMetricsIndex == -1)
             {
                 return default;
             }
 
             var textSpan = selectedLineMetrics.Text.AsSpan();
             var column = index - selectedLineMetrics.Text.Start;
-            if (column > 1 && textSpan[column - 1] == '\n')
+
+            // index sits right after this line's trailing '\n', so the cursor
+            // is visually on the next (possibly empty) line, not this one.
+            if (column > 0 && textSpan[column - 1] == '\n' && selectedLineMetricsIndex + 1 < metrics.LineMetrics.Count)
             {
                 selectedLineMetrics = metrics.LineMetrics[selectedLineMetricsIndex + 1];
                 penY += lineHeight;
             }
 
-            for (int i = selectedLineMetrics.Text.Start; i < selectedLineMetrics.Text.End; i++)
+            float penX = 0;
+            for (int i = selectedLineMetrics.Text.Start; i < index; i++)
             {
-                if (i == index)
-                {
-                    break;
-                }
-
                 penX += characterMetrics[i].Width;
             }
 
             return new(penX, penY);
         }
 
-        public int HitTest(Vector2 position)
+        public float GetLineHeight()
         {
             float emSize = Font.EmSize;
             float fontSize = Format.FontSize;
-            float lineHeight = Font.GetLineHeight(Format.FontSize);
-            float lineSpacing = Format.LineSpacing;
+            float lineHeight = Font.GetLineHeight(fontSize);
+            lineHeight += Format.LineSpacing / emSize * fontSize;
+            return lineHeight;
+        }
 
-            lineHeight += lineSpacing / emSize * fontSize;
+        public int HitTest(Vector2 position)
+        {
+            float lineHeight = GetLineHeight();
 
             int lineIndex = (int)MathF.Floor(position.Y / lineHeight);
 

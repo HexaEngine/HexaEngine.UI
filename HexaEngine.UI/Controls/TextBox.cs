@@ -101,6 +101,11 @@
 
         protected override unsafe void OnTextInput(TextInputEventArgs args)
         {
+            if (IsReadOnly)
+            {
+                return;
+            }
+
             string? oldText = Text;
             string newText;
 
@@ -152,7 +157,7 @@
 
                     case Key.X:
                         {
-                            if (textSelection.IsValid() && text != null)
+                            if (!IsReadOnly && textSelection.IsValid() && text != null)
                             {
                                 textSelection.GetIndices(out var start, out var end);
                                 string selectedText = text[start..end];
@@ -165,28 +170,37 @@
 
                     case Key.V:
                         {
-                            string clipboardText = Clipboard.GetText();
-                            if (!string.IsNullOrEmpty(clipboardText))
+                            if (!IsReadOnly)
                             {
-                                OnPreEdit(ref text);
-                                string newText = text!.Insert(cursorPosition, clipboardText);
-                                cursorPosition += clipboardText.Length;
-                                OnPostEdit(newText);
+                                string clipboardText = Clipboard.GetText();
+                                if (!string.IsNullOrEmpty(clipboardText))
+                                {
+                                    OnPreEdit(ref text);
+                                    string newText = text?.Insert(cursorPosition, clipboardText) ?? clipboardText;
+                                    cursorPosition += clipboardText.Length;
+                                    OnPostEdit(newText);
+                                }
                             }
                             return;
                         }
 
                     case Key.Z:
-                        TryUndo();
+                        if (!IsReadOnly)
+                        {
+                            TryUndo();
+                        }
                         return;
 
                     case Key.Y:
-                        TryRedo();
+                        if (!IsReadOnly)
+                        {
+                            TryRedo();
+                        }
                         return;
                 }
             }
 
-            if (args.KeyCode == Key.Backspace && text != null && text.Length > 0 && cursorPosition > 0)
+            if (args.KeyCode == Key.Backspace && !IsReadOnly && text != null && (textSelection.IsValid() || (text.Length > 0 && cursorPosition > 0)))
             {
                 OnPreEdit(ref text!);
 
@@ -200,7 +214,20 @@
                 OnPostEdit(text);
             }
 
-            if ((args.KeyCode == Key.Return || args.KeyCode == Key.NumEnter) && AcceptsReturn)
+            if (args.KeyCode == Key.Delete && !IsReadOnly && text != null && (textSelection.IsValid() || cursorPosition < text.Length))
+            {
+                OnPreEdit(ref text!);
+
+                if (!textSelection.IsValid())
+                {
+                    int lengthToRemove = GetLengthToMove(text, cursorPosition, 1);
+                    text = text.Remove(cursorPosition, lengthToRemove);
+                }
+
+                OnPostEdit(text);
+            }
+
+            if ((args.KeyCode == Key.Return || args.KeyCode == Key.NumEnter) && AcceptsReturn && !IsReadOnly)
             {
                 OnPreEdit(ref text);
                 string newText = text?.Insert(cursorPosition, Environment.NewLine) ?? Environment.NewLine;
@@ -208,11 +235,11 @@
                 OnPostEdit(newText);
             }
 
-            if (args.KeyCode == Key.Tab && AcceptsTab)
+            if (args.KeyCode == Key.Tab && AcceptsTab && !IsReadOnly)
             {
                 OnPreEdit(ref text);
-                string newText = Text + "\t";
-                cursorPosition += Environment.NewLine.Length;
+                string newText = text?.Insert(cursorPosition, "\t") ?? "\t";
+                cursorPosition += 1;
                 OnPostEdit(newText);
             }
 
@@ -256,7 +283,7 @@
                 return (-1, -1);
             }
 
-            for (int i = 0; i < textLayout!.Metrics.LineMetrics.Count; i++) // lines use absolute indices including CLRF.
+            for (int i = 0; i < textLayout!.Metrics.LineMetrics.Count; i++) // lines use absolute indices including CRLF.
             {
                 LineMetrics line = textLayout!.Metrics.LineMetrics[i];
                 if (line.Text.Start <= index && line.Text.End >= index)
@@ -282,22 +309,22 @@
             {
                 if (index < text.Length - 1 && text[index] == '\r' && text[index + 1] == '\n')
                 {
-                    lengthToMove = 2;
+                    return 2;
                 }
                 else if (index < text.Length - 1 && char.IsSurrogatePair(text[index], text[index + 1]))
                 {
-                    lengthToMove = 2;
+                    return 2;
                 }
             }
             else if (direction == -1) // Moving backward
             {
                 if (index > 1 && text[index - 2] == '\r' && text[index - 1] == '\n')
                 {
-                    lengthToMove = 2;
+                    return -2;
                 }
                 else if (index > 1 && char.IsSurrogatePair(text[index - 2], text[index - 1]))
                 {
-                    lengthToMove = 2;
+                    return -2;
                 }
             }
 
@@ -308,7 +335,11 @@
         {
             if (text == null) return;
 
-            undoHistory.Push((text, cursorPosition, textSelection));
+            if (IsUndoEnabled)
+            {
+                undoHistory.Push((text, cursorPosition, textSelection));
+                TrimUndoHistory();
+            }
             redoHistory.Clear();
 
             if (textSelection.IsValid())
@@ -336,9 +367,25 @@
             InvalidateMeasure();
         }
 
+        private void TrimUndoHistory()
+        {
+            int limit = UndoLimit;
+            if (limit < 0 || undoHistory.Count <= limit)
+            {
+                return;
+            }
+
+            var items = undoHistory.ToArray(); // top (most recent) first
+            undoHistory.Clear();
+            for (int i = items.Length - 2; i >= 0; i--) // drop the oldest entry, restore the rest
+            {
+                undoHistory.Push(items[i]);
+            }
+        }
+
         public bool TryUndo()
         {
-            if (undoHistory.Count == 0) return false;
+            if (!IsUndoEnabled || undoHistory.Count == 0) return false;
             Undo();
             return true;
         }
@@ -358,7 +405,7 @@
 
         public bool TryRedo()
         {
-            if (redoHistory.Count == 0) return false;
+            if (!IsUndoEnabled || redoHistory.Count == 0) return false;
             Redo();
             return true;
         }
@@ -395,23 +442,26 @@
                 var text = Text;
                 var textLen = text?.Length ?? 0;
 
-                var hitPos = Math.Clamp(cursorPosition, 0, textLen - 1);
-
-                int start = hitPos;
-                while (start > 0 && IsWordCharacter(text![start - 1]))
+                if (textLen > 0)
                 {
-                    start--;
-                }
+                    var hitPos = Math.Clamp(cursorPosition, 0, textLen - 1);
 
-                int end = hitPos;
-                while (end < textLen && IsWordCharacter(text![end]))
-                {
-                    end++;
-                }
+                    int start = hitPos;
+                    while (start > 0 && IsWordCharacter(text![start - 1]))
+                    {
+                        start--;
+                    }
 
-                textSelection.Start = start;
-                textSelection.End = end;
-                cursorPosition = end;
+                    int end = hitPos;
+                    while (end < textLen && IsWordCharacter(text![end]))
+                    {
+                        end++;
+                    }
+
+                    textSelection.Start = start;
+                    textSelection.End = end;
+                    cursorPosition = end;
+                }
             }
 
             hold = true;
