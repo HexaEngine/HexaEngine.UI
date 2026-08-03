@@ -54,6 +54,11 @@
 
         public virtual void Initialize()
         {
+            if (isInitialized)
+            {
+                return;
+            }
+
             foreach (var even in EventManager.GetRoutedEventsForOwnerIterator(DependencyObjectType))
             {
                 var route = even.CreateEventRoute(this);
@@ -68,7 +73,8 @@
 
         private void BuildRoute(EventRoute route)
         {
-            DependencyObject? current = this;
+            // `this` is already added by CreateEventRoute; only ancestors remain.
+            DependencyObject? current = Parent;
             while (current != null)
             {
                 if (current is UIElement element)
