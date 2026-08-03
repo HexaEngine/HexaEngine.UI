@@ -1,14 +1,45 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>true</EnableAotAnalyzer>
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
+
+		<PackageId>HexaEngine.UI.Markup</PackageId>
+		<AssemblyVersion>1.0.0.2</AssemblyVersion>
+		<PackageVersion>1.0.0.2</PackageVersion>
+		<Description>Retained-mode UI module for HexaEngine — a high-performance, cross-platform 3D game engine. Provides retained UI layout, widgets, styling, rendering and input integration for building in-engine editors and game interfaces.</Description>
+		<PackageTags>HexaEngine;UI;retained-mode;GUI;user-interface;game-engine;C#;dotnet</PackageTags>
+		<Authors>Juna Meinhold</Authors>
+		<Copyright>Copyright (c) 2022 Juna Meinhold</Copyright>
+		<PackageProjectUrl>https://github.com/HexaEngine/HexaEngine</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/HexaEngine/HexaEngine</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
+
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Hexa.NET.Logging" Version="2.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\LICENSE.txt" Pack="true" PackagePath="\" Link="LICENSE.txt" />
+		<Content Include="..\README.md" Pack="true" PackagePath="\" Link="README.md" />
+		<Content Include="..\icon.png" Pack="true" PackagePath="\" Link="icon.png" />
 	</ItemGroup>
 
 </Project>

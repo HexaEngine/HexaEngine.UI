@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFramework>net10.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -13,8 +13,8 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 
 		<PackageId>HexaEngine.UI</PackageId>
-		<AssemblyVersion>1.0.0.1</AssemblyVersion>
-		<PackageVersion>1.0.0.1</PackageVersion>
+		<AssemblyVersion>1.0.0.2</AssemblyVersion>
+		<PackageVersion>1.0.0.2</PackageVersion>
 		<Description>Retained-mode UI module for HexaEngine — a high-performance, cross-platform 3D game engine. Provides retained UI layout, widgets, styling, rendering and input integration for building in-engine editors and game interfaces.</Description>
 		<PackageTags>HexaEngine;UI;retained-mode;GUI;user-interface;game-engine;C#;dotnet</PackageTags>
 		<Authors>Juna Meinhold</Authors>
