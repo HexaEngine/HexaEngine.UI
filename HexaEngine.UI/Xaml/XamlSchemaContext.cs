@@ -3,8 +3,10 @@
     using HexaEngine.UI.Markup;
     using HexaEngine.UI.Xaml.Schema;
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
 
+    [RequiresUnreferencedCode("Requires reflection in order to work.")]
     public class XamlSchemaContext
     {
         private readonly List<Assembly> referenceAssemblies;

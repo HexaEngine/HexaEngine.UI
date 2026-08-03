@@ -35,6 +35,7 @@
 	
 	<ItemGroup>
 	  <PackageReference Include="HexaEngine.Core" Version="1.0.0.1" />
+	  <PackageReference Include="HexaEngine.Sdk" Version="1.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -61,10 +62,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\HexaEngine.UI.Markup\HexaEngine.UI.Markup.csproj" />
 	</ItemGroup>
-
-	<!-- Target to run HexaAssetTool before build -->
-	<Target Name="GenerateAssets" BeforeTargets="BeforeBuild">
-		<Exec Command="HexaAssetTool.exe -m MultiCreate -p &quot;./&quot;" WorkingDirectory="$(ProjectDir)assets" />
-	</Target>
 
 </Project>

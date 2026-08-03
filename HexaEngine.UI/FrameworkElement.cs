@@ -8,6 +8,8 @@
     [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
     public class FrameworkElement : UIElement
     {
+        private ResourceDictionary? resources;
+
         public static readonly DependencyProperty<float> ActualWidthProperty = DependencyProperty.Register<FrameworkElement, float>(nameof(ActualWidth), false, new FrameworkMetadata(0f));
 
         public static readonly DependencyProperty<float> ActualHeightProperty = DependencyProperty.Register<FrameworkElement, float>(nameof(ActualHeight), false, new FrameworkMetadata(0f));
@@ -30,7 +32,133 @@
 
         public static readonly DependencyProperty<Style> StyleProperty = DependencyProperty.Register<FrameworkElement, Style>(nameof(Style), false, new FrameworkMetadata(null, FrameworkPropertyMetadataOptions.AffectsParentMeasure));
 
-        public Style? Style { get => GetValue(StyleProperty); set => SetValue(StyleProperty, value); }
+        public Style? Style
+        {
+            get => GetValue(StyleProperty);
+            set
+            {
+                SetValue(StyleProperty, value);
+                if (IsInitialized)
+                {
+                    ApplyStyle(value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the resources owned by this element.
+        /// </summary>
+        public ResourceDictionary Resources
+        {
+            get => resources ??= new();
+            set => resources = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        /// <summary>
+        /// Gets whether this element owns any local or merged resources without creating a dictionary.
+        /// </summary>
+        public bool HasResources => resources != null && !resources.IsEmpty;
+
+        /// <summary>
+        /// Searches this element and its ancestors for <paramref name="key"/>.
+        /// </summary>
+        public bool TryFindResource(object key, out object? value)
+        {
+            ArgumentNullException.ThrowIfNull(key);
+
+            DependencyObject? current = this;
+            while (current != null)
+            {
+                if (current is FrameworkElement element &&
+                    element.resources != null &&
+                    element.resources.TryGetValue(key, out value))
+                {
+                    return true;
+                }
+
+                current = current.Parent;
+            }
+
+            value = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Searches this element and its ancestors for <paramref name="key"/>.
+        /// </summary>
+        /// <exception cref="KeyNotFoundException">The resource key was not found.</exception>
+        public object? FindResource(object key)
+        {
+            if (TryFindResource(key, out object? value))
+            {
+                return value;
+            }
+
+            throw new KeyNotFoundException($"Resource '{key}' was not found.");
+        }
+
+        protected override void OnInitialized()
+        {
+            Style? style = Style;
+            if (style == null && TryFindResource(DependencyObjectType, out object? resource))
+            {
+                style = resource as Style;
+                if (style != null)
+                {
+                    SetValue(StyleProperty, style);
+                }
+            }
+
+            ApplyStyle(style);
+            base.OnInitialized();
+        }
+
+        private void ApplyStyle(Style? style)
+        {
+            ClearStyleValues();
+            if (style == null)
+            {
+                return;
+            }
+
+            Style? slow = style;
+            Style? fast = style;
+            while (fast?.BasedOn != null)
+            {
+                slow = slow?.BasedOn;
+                fast = fast.BasedOn.BasedOn;
+                if (ReferenceEquals(slow, fast))
+                {
+                    throw new InvalidOperationException("A Style cannot contain a BasedOn cycle.");
+                }
+            }
+
+            ApplyStyleCore(style);
+        }
+
+        private void ApplyStyleCore(Style style)
+        {
+            if (!style.TargetType.IsAssignableFrom(DependencyObjectType))
+            {
+                throw new InvalidOperationException($"Style targeting '{style.TargetType}' cannot be applied to '{DependencyObjectType}'.");
+            }
+
+            if (style.BasedOn != null)
+            {
+                ApplyStyleCore(style.BasedOn);
+            }
+
+            for (int i = 0; i < style.Setters.Count; i++)
+            {
+                Setter setter = style.Setters[i];
+                if (setter.TargetProperty == null)
+                {
+                    throw new InvalidOperationException($"Style setter '{setter.Property}' has no target dependency property.");
+                }
+
+                SetStyleValue(setter.TargetProperty, setter.Value);
+            }
+        }
 
         public override void Render(UICommandList commandList)
         {

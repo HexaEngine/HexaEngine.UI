@@ -10,6 +10,7 @@
     using System.Reflection;
     using System.Xml;
 
+    [RequiresUnreferencedCode("Requires reflection in order to work.")]
     public class XamlReader
     {
         private const string ClrNamespaceIdentifier = "clr-namespace:";

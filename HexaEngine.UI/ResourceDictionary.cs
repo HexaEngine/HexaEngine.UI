@@ -1,150 +1,388 @@
-﻿namespace HexaEngine.UI
+namespace HexaEngine.UI
 {
-    using HexaEngine.UI.Markup;
     using System;
     using System.Collections;
     using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
 
-    [Ambient]
-    [UsableDuringInitialization(true)]
-    public class ResourceDictionary : IDictionary, ISupportInitialize, INameScope, IUriContext
+    /// <summary>
+    /// Stores resources constructed by generated XAML code and resolves them through merged dictionaries.
+    /// </summary>
+    /// <remarks>
+    /// This type performs no runtime XAML parsing, resource-file loading, type discovery, or object activation.
+    /// </remarks>
+    public class ResourceDictionary : IDictionary
     {
-        private static readonly Dictionary<object, object> hashtable = [];
-        private bool initialized = false;
-        private ResourceDictionaryCollection? _mergedDictionaries;
-        private Uri source;
+        private readonly Dictionary<object, object?> resources;
+        private ResourceDictionaryCollection? mergedDictionaries;
 
+        /// <summary>
+        /// Initializes an empty resource dictionary.
+        /// </summary>
+        public ResourceDictionary()
+        {
+            resources = new(ResourceKeyComparer.Instance);
+        }
+
+        /// <summary>
+        /// Initializes an empty resource dictionary with space for <paramref name="capacity"/> local resources.
+        /// </summary>
+        public ResourceDictionary(int capacity)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegative(capacity);
+            resources = new(capacity, ResourceKeyComparer.Instance);
+        }
+
+        /// <summary>
+        /// Gets or sets the resource associated with <paramref name="key"/>.
+        /// </summary>
+        /// <remarks>
+        /// Local resources take precedence. Merged dictionaries are searched from last to first.
+        /// A missing key returns <see langword="null"/>.
+        /// </remarks>
         public object? this[object key]
         {
             get
             {
-                var value = hashtable[key];
-                OnGettingValue(key, ref value, out _);
+                TryGetValue(key, out object? value);
                 return value;
             }
-            set => hashtable[key] = value;
+            set
+            {
+                ArgumentNullException.ThrowIfNull(key);
+                resources[key] = value;
+            }
         }
 
+        /// <inheritdoc/>
         public bool IsFixedSize => false;
 
+        /// <inheritdoc/>
         public bool IsReadOnly => false;
 
-        public ICollection Keys => hashtable.Keys;
+        /// <inheritdoc/>
+        public ICollection Keys => resources.Keys;
 
-        public ICollection Values => hashtable.Values;
+        /// <inheritdoc/>
+        public ICollection Values => resources.Values;
 
-        public int Count => hashtable.Count;
+        /// <inheritdoc/>
+        public int Count => resources.Count;
 
-        bool ICollection.IsSynchronized => ((ICollection)hashtable).IsSynchronized;
+        /// <summary>
+        /// Gets the dictionaries used as fallbacks by this dictionary.
+        /// </summary>
+        public Collection<ResourceDictionary> MergedDictionaries => mergedDictionaries ??= new(this);
 
-        object ICollection.SyncRoot => ((ICollection)hashtable).SyncRoot;
+        bool ICollection.IsSynchronized => false;
 
-        Uri IUriContext.BaseUri { get; set; }
+        object ICollection.SyncRoot => ((ICollection)resources).SyncRoot;
 
-        public Uri Source
-        {
-            get => source;
-            set => source = value;
-        }
+        internal bool IsEmpty => resources.Count == 0 && (mergedDictionaries == null || mergedDictionaries.Count == 0);
 
-        public DeferrableContent DeferrableContent { get; set; }
-
-        public bool InvalidatesImplicitDataTemplateResources { get; set; }
-
-        public Collection<ResourceDictionary> MergedDictionaries
-        {
-            get
-            {
-                if (_mergedDictionaries == null)
-                {
-                    _mergedDictionaries = new ResourceDictionaryCollection(this);
-                    _mergedDictionaries.CollectionChanged += OnMergedDictionariesChanged;
-                }
-
-                return _mergedDictionaries;
-            }
-        }
-
-        private void OnMergedDictionariesChanged(object? sender, NotifyCollectionChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected virtual void OnGettingValue(object key, ref object? value, out bool canCache)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <inheritdoc/>
         public void Add(object key, object? value)
         {
-            hashtable.Add(key, value);
+            ArgumentNullException.ThrowIfNull(key);
+            resources.Add(key, value);
         }
 
-        public void BeginInit()
+        /// <summary>
+        /// Ensures space for the requested number of local resources without resizing.
+        /// </summary>
+        public int EnsureCapacity(int capacity)
         {
-            if (initialized)
-            {
-                throw new InvalidOperationException();
-            }
-
-            throw new NotImplementedException();
+            return resources.EnsureCapacity(capacity);
         }
 
-        public void EndInit()
-        {
-            initialized = true;
-            throw new NotImplementedException();
-        }
-
+        /// <inheritdoc/>
         public void Clear()
         {
-            hashtable.Clear();
+            resources.Clear();
         }
 
+        /// <summary>
+        /// Determines whether this dictionary or a merged dictionary contains <paramref name="key"/>.
+        /// </summary>
         public bool Contains(object key)
         {
-            return hashtable.Contains(key);
+            ArgumentNullException.ThrowIfNull(key);
+
+            if (resources.ContainsKey(key))
+            {
+                return true;
+            }
+
+            if (mergedDictionaries != null)
+            {
+                for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
+                {
+                    if (mergedDictionaries[i].Contains(key))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
+        /// <summary>
+        /// Attempts to retrieve a resource from this dictionary or its merged dictionaries.
+        /// </summary>
+        public bool TryGetValue(object key, out object? value)
+        {
+            ArgumentNullException.ThrowIfNull(key);
+
+            if (resources.TryGetValue(key, out value))
+            {
+                return true;
+            }
+
+            if (mergedDictionaries != null)
+            {
+                for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
+                {
+                    if (mergedDictionaries[i].TryGetValue(key, out value))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            value = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Gets an allocation-free lookup view for string keys represented by character spans.
+        /// </summary>
+        public AlternateLookup GetAlternateLookup()
+        {
+            return new(this);
+        }
+
+        /// <inheritdoc/>
         public void CopyTo(Array array, int index)
         {
-            hashtable.CopyTo(array, index);
+            ArgumentNullException.ThrowIfNull(array);
+            ((ICollection)resources).CopyTo(array, index);
         }
 
-        public IDictionaryEnumerator GetEnumerator()
+        /// <summary>
+        /// Enumerates local resources without allocating.
+        /// </summary>
+        public Enumerator GetEnumerator()
         {
-            return hashtable.GetEnumerator();
+            return new(resources);
         }
 
+        IDictionaryEnumerator IDictionary.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        /// <inheritdoc/>
         public void Remove(object key)
         {
-            hashtable.Remove(key);
+            ArgumentNullException.ThrowIfNull(key);
+            resources.Remove(key);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return hashtable.GetEnumerator();
+            return ((IDictionary)this).GetEnumerator();
         }
 
-        public object? FindName(string name)
+        internal void ValidateMergedDictionary(ResourceDictionary resourceDictionary)
         {
-            return null;
+            if (ReferenceEquals(this, resourceDictionary) || resourceDictionary.ContainsDictionary(this))
+            {
+                throw new InvalidOperationException("A ResourceDictionary cannot merge itself directly or indirectly.");
+            }
         }
 
-        public void RegisterName(string name, object scopedElement)
+        private bool ContainsStringKey(ReadOnlySpan<char> key)
         {
-            throw new NotSupportedException();
+            Dictionary<object, object?>.AlternateLookup<ReadOnlySpan<char>> lookup = resources.GetAlternateLookup<ReadOnlySpan<char>>();
+            if (lookup.ContainsKey(key))
+            {
+                return true;
+            }
+
+            if (mergedDictionaries != null)
+            {
+                for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
+                {
+                    if (mergedDictionaries[i].ContainsStringKey(key))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
-        public void UnregisterName(string name)
+        private bool TryGetStringValue(ReadOnlySpan<char> key, out object? value)
         {
+            Dictionary<object, object?>.AlternateLookup<ReadOnlySpan<char>> lookup = resources.GetAlternateLookup<ReadOnlySpan<char>>();
+            if (lookup.TryGetValue(key, out value))
+            {
+                return true;
+            }
+
+            if (mergedDictionaries != null)
+            {
+                for (int i = mergedDictionaries.Count - 1; i >= 0; i--)
+                {
+                    if (mergedDictionaries[i].TryGetStringValue(key, out value))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            value = null;
+            return false;
         }
 
-        internal void RemoveParentOwners(ResourceDictionary resourceDictionary)
+        private bool ContainsDictionary(ResourceDictionary resourceDictionary)
         {
-            throw new NotImplementedException();
+            if (ReferenceEquals(this, resourceDictionary))
+            {
+                return true;
+            }
+
+            if (mergedDictionaries != null)
+            {
+                for (int i = 0; i < mergedDictionaries.Count; i++)
+                {
+                    if (mergedDictionaries[i].ContainsDictionary(resourceDictionary))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Provides allocation-free lookup for string keys represented by character spans.
+        /// </summary>
+        public readonly ref struct AlternateLookup
+        {
+            private readonly ResourceDictionary owner;
+
+            internal AlternateLookup(ResourceDictionary owner)
+            {
+                this.owner = owner;
+            }
+
+            /// <summary>
+            /// Gets a resource, or <see langword="null"/> when the key is absent.
+            /// </summary>
+            public object? this[ReadOnlySpan<char> key]
+            {
+                get
+                {
+                    TryGetValue(key, out object? value);
+                    return value;
+                }
+            }
+
+            /// <summary>
+            /// Determines whether the dictionary or any merged dictionary contains the key.
+            /// </summary>
+            public bool ContainsKey(ReadOnlySpan<char> key) => owner.ContainsStringKey(key);
+
+            /// <summary>
+            /// Attempts to retrieve the key from the dictionary or its merged dictionaries.
+            /// </summary>
+            public bool TryGetValue(ReadOnlySpan<char> key, out object? value) => owner.TryGetStringValue(key, out value);
+        }
+
+        private sealed class ResourceKeyComparer : IEqualityComparer<object>, IAlternateEqualityComparer<ReadOnlySpan<char>, object>
+        {
+            public static ResourceKeyComparer Instance { get; } = new();
+
+            private ResourceKeyComparer()
+            {
+            }
+
+            public object Create(ReadOnlySpan<char> alternate)
+            {
+                return alternate.ToString();
+            }
+
+            public bool Equals(ReadOnlySpan<char> alternate, object other)
+            {
+                return other is string text && alternate.Equals(text.AsSpan(), StringComparison.Ordinal);
+            }
+
+            public int GetHashCode(ReadOnlySpan<char> alternate)
+            {
+                return string.GetHashCode(alternate);
+            }
+
+            public new bool Equals(object? x, object? y)
+            {
+                return EqualityComparer<object>.Default.Equals(x, y);
+            }
+
+            public int GetHashCode(object obj)
+            {
+                return obj.GetHashCode();
+            }
+        }
+
+        /// <summary>
+        /// Enumerates the local resources without allocating when used directly.
+        /// </summary>
+        public struct Enumerator : IDictionaryEnumerator, IDisposable
+        {
+            private readonly Dictionary<object, object?> dictionary;
+            private Dictionary<object, object?>.Enumerator enumerator;
+
+            internal Enumerator(Dictionary<object, object?> dictionary)
+            {
+                this.dictionary = dictionary;
+                enumerator = dictionary.GetEnumerator();
+            }
+
+            /// <inheritdoc/>
+            public DictionaryEntry Entry => new(Key, Value);
+
+            /// <inheritdoc/>
+            public object Key => enumerator.Current.Key;
+
+            /// <inheritdoc/>
+            public object? Value => enumerator.Current.Value;
+
+            /// <summary>
+            /// Gets the current local resource entry.
+            /// </summary>
+            public DictionaryEntry Current => Entry;
+
+            object IEnumerator.Current => Entry;
+
+            /// <inheritdoc/>
+            public bool MoveNext()
+            {
+                return enumerator.MoveNext();
+            }
+
+            /// <inheritdoc/>
+            public void Reset()
+            {
+                enumerator = dictionary.GetEnumerator();
+            }
+
+            /// <inheritdoc/>
+            public void Dispose()
+            {
+                enumerator.Dispose();
+            }
         }
     }
 }

@@ -19,9 +19,27 @@ for (int i = 0; i < args.Length; i++)
         case "--references":
             {
                 ++i;
-                foreach (string reference in args[i].Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                ReadOnlySpan<char> references = args[i];
+                while (!references.IsEmpty)
                 {
-                    AssemblyCache.RegisterAssemblyPath(reference);
+                    int separator = references.IndexOf(';');
+                    ReadOnlySpan<char> reference = separator < 0
+                        ? references
+                        : references[..separator];
+                    reference = reference.Trim();
+
+                    if (!reference.IsEmpty)
+                    {
+                        // The cache retains the path, so materialize only the final slices.
+                        AssemblyCache.RegisterAssemblyPath(reference.ToString());
+                    }
+
+                    if (separator < 0)
+                    {
+                        break;
+                    }
+
+                    references = references[(separator + 1)..];
                 }
 
                 break;

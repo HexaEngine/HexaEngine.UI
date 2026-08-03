@@ -22,6 +22,7 @@ namespace HexaEngine.UI.XamlGen
         public static Type DependencyPropertyType = null!;
         public static Type RoutedEventType = null!;
         public static Type ContentPropertyAttributeType = null!;
+        public static Type DictionaryKeyPropertyAttributeType = null!;
         public static Type ThicknessType = null!;
         public static Type GridLengthType = null!;
         public static Type BrushType = null!;
@@ -35,6 +36,7 @@ namespace HexaEngine.UI.XamlGen
             DependencyObjectType = UIAssembly.GetType("HexaEngine.UI.DependencyObject", true)!;
             DependencyPropertyType = UIAssembly.GetType("HexaEngine.UI.DependencyProperty", true)!;
             ContentPropertyAttributeType = UIAssembly.GetType("HexaEngine.UI.Markup.ContentPropertyAttribute", true)!;
+            DictionaryKeyPropertyAttributeType = UIAssembly.GetType("HexaEngine.UI.Markup.DictionaryKeyPropertyAttribute", true)!;
 
             ThicknessType = UIAssembly.GetType("HexaEngine.UI.Thickness", true)!;
             GridLengthType = UIAssembly.GetType("HexaEngine.UI.Controls.GridLength", true)!;

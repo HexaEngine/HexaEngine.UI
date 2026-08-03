@@ -11,6 +11,7 @@
     {
         public Type Type;
         public string? ContentProperty;
+        public string? DictionaryKeyProperty;
         public Dictionary<string, XamlPropertyInfo>? Properties;
         public Dictionary<string, XamlEventInfo>? Events;
 
@@ -21,6 +22,12 @@
             if (attr != null)
             {
                 ContentProperty = (string)AssemblyCache.ContentPropertyAttributeType.GetProperty("Name", BindingFlags.Instance | BindingFlags.Public)!.GetValue(attr)!;
+            }
+
+            attr = type.GetCustomAttribute(AssemblyCache.DictionaryKeyPropertyAttributeType, true);
+            if (attr != null)
+            {
+                DictionaryKeyProperty = (string)AssemblyCache.DictionaryKeyPropertyAttributeType.GetProperty("Name", BindingFlags.Instance | BindingFlags.Public)!.GetValue(attr)!;
             }
 
             if (Type.IsAssignableTo(AssemblyCache.DependencyObjectType))

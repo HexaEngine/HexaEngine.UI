@@ -31,8 +31,7 @@
                     }
                 }
             }
-            Types.TryGetValue(clrTypeName, out var type);
-            return type.Type == null ? null : type;
+            return Types.TryGetValue(clrTypeName, out TypeInfo? type) ? type : null;
         }
     }
 

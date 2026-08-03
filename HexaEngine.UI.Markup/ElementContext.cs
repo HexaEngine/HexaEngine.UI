@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using HexaEngine.UI.XamlGenCli;
 
@@ -11,6 +11,8 @@ namespace HexaEngine.UI.XamlGen
         public bool IsRoot;
         public bool IsPropertyElement;
         public string PropertyName;
-        public bool IsDefinition;
+        public string? DictionaryKey;
+        public Type? StyleTargetType;
+        public string? ResourceLookupVariable;
     }
 }

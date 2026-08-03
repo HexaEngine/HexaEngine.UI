@@ -2,6 +2,7 @@
 
 namespace HexaEngine.UI.XamlGen
 {
+    using Microsoft.VisualStudio;
     using Microsoft.CodeAnalysis;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.VisualStudio.ComponentModelHost;
@@ -50,28 +51,43 @@ namespace HexaEngine.UI.XamlGen
                 Logger.LogError($"Code generation failed for {wszInputFilePath}", ex);
                 pGenerateProgress?.GeneratorError(0, 0, ex.Message, 0, 0);
                 pcbOutput = 0;
-                return 1;
+                return VSConstants.E_FAIL;
             }
         }
 
         private string GenerateCode(string wszInputFilePath, string bstrInputFileContents, string wszDefaultNamespace)
         {
-            var tempFile = Path.GetTempFileName();
-            var outputFile = Path.GetTempFileName();
-            File.WriteAllLines(tempFile, GetReferences());
-            ProcessStartInfo psi = new("C:\\Users\\junam\\source\\repos\\HexaEngine.UI\\HexaEngine.UI.XamlGenCli\\bin\\Publish\\HexaXamlGenCli.exe")
-            {
-                UseShellExecute = false,
-                CreateNoWindow = true,
-                Arguments = $"-f \"{wszInputFilePath}\" -n \"{wszDefaultNamespace}\" -rf \"{tempFile}\" -o \"{outputFile}\"",
-            };
+            string tempFile = Path.GetTempFileName();
+            string outputFile = Path.GetTempFileName();
 
-            var process = Process.Start(psi);
-            process.WaitForExit();
-            var result = File.ReadAllText(outputFile);
-            File.Delete(tempFile);
-            File.Delete(outputFile);
-            return result;
+            try
+            {
+                File.WriteAllLines(tempFile, GetReferences());
+                ProcessStartInfo psi = new("C:\\Users\\junam\\source\\repos\\HexaEngine.UI\\HexaEngine.UI.XamlGenCli\\bin\\Publish\\win-x64\\HexaXamlGen.exe")
+                {
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardError = true,
+                    Arguments = $"-f \"{wszInputFilePath}\" -n \"{wszDefaultNamespace}\" -rf \"{tempFile}\" -o \"{outputFile}\"",
+                };
+
+                using (Process process = Process.Start(psi) ?? throw new InvalidOperationException("Failed to start HexaXamlGen.exe."))
+                {
+                    string error = process.StandardError.ReadToEnd();
+                    process.WaitForExit();
+                    if (process.ExitCode != 0)
+                    {
+                        throw new InvalidOperationException($"HexaXamlGen.exe exited with code {process.ExitCode}: {error.Trim()}");
+                    }
+                }
+
+                return File.ReadAllText(outputFile);
+            }
+            finally
+            {
+                File.Delete(tempFile);
+                File.Delete(outputFile);
+            }
         }
 
         private static readonly HashSet<string> ignoredProjects = ["HexaEngine.UI.XamlGen", "HexaEngine.UI.XamlGenCli"];

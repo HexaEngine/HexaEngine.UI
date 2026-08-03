@@ -63,6 +63,10 @@ namespace HexaEngine.UI.XamlGen
                 Logger.Info($"Registering default HexaEngine.UI namespace for prefix '{prefix}'");
                 AssemblyCache.RegisterNamespace(prefix, "*", "HexaEngine.UI");
             }
+            else if (uri == "http://schemas.microsoft.com/winfx/2006/xaml")
+            {
+                // XAML language directives such as x:Key are handled by the generator.
+            }
             else
             {
                 Logger.Error($"Unsupported xmlns URI: '{uri}'");
@@ -175,7 +179,13 @@ namespace HexaEngine.UI.XamlGen
             Stack<ElementContext> stack = new();
 
             XamlCodeGenContext ctx = new();
-            ctx.CurrentElement = new() { VariableName = "this", IsRoot = true, TypeName = new(rootTypeName) };
+            ctx.CurrentElement = new()
+            {
+                VariableName = "this",
+                IsRoot = true,
+                TypeName = new(rootTypeName),
+                ResourceLookupVariable = "this"
+            };
             StringReader stringReader = new(inputFileContents);
             var reader = XmlReader.Create(stringReader);
 
@@ -196,13 +206,22 @@ namespace HexaEngine.UI.XamlGen
                             // Property element like Grid.RowDefinitions
                             if (!reader.IsEmptyElement)
                             {
-                                ctx.PushElement(new()
+                                string propertyName = elementName[(elementName.IndexOf('.') + 1)..];
+                                ElementContext ownerContext = currentContext;
+                                if (propertyName == "Resources")
                                 {
-                                    VariableName = ctx.CurrentElement.VariableName,
-                                    TypeName = ctx.CurrentElement.TypeName,
+                                    ownerContext.ResourceLookupVariable = ownerContext.VariableName;
+                                }
+
+                                stack.Push(ownerContext);
+                                currentContext = new()
+                                {
+                                    VariableName = ownerContext.VariableName,
+                                    TypeName = ownerContext.TypeName,
                                     IsPropertyElement = true,
-                                    PropertyName = elementName[(elementName.IndexOf('.') + 1)..]
-                                });
+                                    PropertyName = propertyName,
+                                    ResourceLookupVariable = ownerContext.ResourceLookupVariable
+                                };
                             }
                             continue;
                         }
@@ -222,10 +241,14 @@ namespace HexaEngine.UI.XamlGen
                         }
                         else if (currentContext.IsPropertyElement)
                         {
-                            writer.Write($"{currentContext.VariableName}.{currentContext.PropertyName}.Add(new {typeName.Name}()");
+                            variableName = $"element{elementIndex++}";
+                            writer.WriteLine($"{typeName} {variableName} = new();");
 
-                            // Add properties inline if any
-                            bool hasProperties = false;
+                            TypeInfo typeInfo = AssemblyCache.GetType(typeName)
+                                ?? throw new InvalidOperationException($"Type '{typeName}' could not be resolved.");
+                            string? dictionaryKey = null;
+                            Type? styleTargetType = null;
+
                             if (reader.HasAttributes)
                             {
                                 while (reader.MoveToNextAttribute())
@@ -235,36 +258,52 @@ namespace HexaEngine.UI.XamlGen
                                         continue;
                                     }
 
-                                    if (!hasProperties)
+                                    if (IsDictionaryKeyAttribute(reader))
                                     {
-                                        writer.BeginBlock();
-                                        hasProperties = true;
+                                        dictionaryKey = QuoteString(reader.Value);
+                                        continue;
                                     }
 
                                     string propertyName = reader.Name;
                                     string propertyValue = reader.Value;
-                                    writer.WriteLine($"{propertyName} = {ValueConverter.Convert(propertyValue, propertyName, typeName)},");
+                                    if (!typeInfo.TryGetProperty(propertyName, out XamlPropertyInfo propertyInfo))
+                                    {
+                                        throw new InvalidOperationException($"Property '{propertyName}' was not found on '{typeName}'.");
+                                    }
+
+                                    string convertedValue = ConvertValue(propertyValue, propertyInfo.PropertyType, propertyName, currentContext.ResourceLookupVariable);
+                                    writer.WriteLine($"{variableName}.{propertyName} = {convertedValue};");
+
+                                    if (dictionaryKey == null && propertyName == typeInfo.DictionaryKeyProperty)
+                                    {
+                                        dictionaryKey = convertedValue;
+                                    }
+
+                                    if (propertyName == typeInfo.DictionaryKeyProperty && propertyInfo.PropertyType == typeof(Type))
+                                    {
+                                        styleTargetType = AssemblyCache.GetType(new XamlTypeName(propertyValue))?.Type;
+                                    }
                                 }
                                 reader.MoveToElement();
                             }
 
-                            if (hasProperties)
+                            ElementContext valueContext = new()
                             {
-                                writer.EndBlock("});");
-                            }
-                            else
-                            {
-                                writer.WriteLine(");");
-                            }
+                                VariableName = variableName,
+                                TypeName = typeName,
+                                DictionaryKey = dictionaryKey,
+                                StyleTargetType = styleTargetType,
+                                ResourceLookupVariable = currentContext.ResourceLookupVariable
+                            };
 
-                            // Don't push context for empty definitions
                             if (reader.IsEmptyElement)
                             {
+                                WritePropertyValue(writer, currentContext, valueContext);
                                 continue;
                             }
 
                             stack.Push(currentContext);
-                            currentContext = new() { VariableName = null!, TypeName = typeName, IsDefinition = true };
+                            currentContext = valueContext;
                             continue;
                         }
                         else
@@ -276,6 +315,26 @@ namespace HexaEngine.UI.XamlGen
                         // Set properties from attributes (for non-definition elements or non-property-collection contexts)
                         if (reader.HasAttributes && variableName != null)
                         {
+                            Type? setterValueType = null;
+                            XamlPropertyInfo? setterTargetProperty = null;
+                            TypeInfo? elementTypeInfo = AssemblyCache.GetType(typeName);
+                            if (elementTypeInfo?.Type.FullName == "HexaEngine.UI.Setter" && currentContext.StyleTargetType != null)
+                            {
+                                string? targetPropertyName = reader.GetAttribute("Property");
+                                if (!string.IsNullOrEmpty(targetPropertyName))
+                                {
+                                    TypeInfo targetTypeInfo = new(currentContext.StyleTargetType);
+                                    setterTargetProperty = targetTypeInfo.GetProperty(targetPropertyName);
+                                    setterValueType = setterTargetProperty.Value.PropertyType;
+                                    if (setterTargetProperty.Value.Field == null)
+                                    {
+                                        throw new InvalidOperationException($"Style setter property '{targetPropertyName}' on '{currentContext.StyleTargetType}' is not a dependency property.");
+                                    }
+
+                                    writer.WriteLine($"{variableName}.TargetProperty = {GetTypeReference(setterTargetProperty.Value.Field.DeclaringType!)}.{setterTargetProperty.Value.Field.Name};");
+                                }
+                            }
+
                             while (reader.MoveToNextAttribute())
                             {
                                 if (reader.Name == "xmlns" || reader.Name.StartsWith("xmlns:") || reader.Name == "Name")
@@ -292,10 +351,11 @@ namespace HexaEngine.UI.XamlGen
                                 {
                                     var ownerType = propertyName.AsSpan(0, idx);
                                     var propName = propertyName.AsSpan(idx + 1);
-                                    var typeInfo = AssemblyCache.GetType(new XamlTypeName(ownerType.ToString()))!;
+                                    TypeInfo typeInfo = AssemblyCache.GetType(new XamlTypeName(ownerType.ToString()))
+                                        ?? throw new InvalidOperationException($"Attached-property owner '{ownerType}' could not be resolved.");
                                     if (typeInfo.TryGetProperty(propName, out var propInfo))
                                     {
-                                        writer.WriteLine($"{variableName}.SetValue({ownerType}.{propInfo.Field!.Name}, {ValueConverter.Convert(propertyValue, propInfo.PropertyType, propName)});");
+                                        writer.WriteLine($"{variableName}.SetValue({ownerType}.{propInfo.Field!.Name}, {ConvertValue(propertyValue, propInfo.PropertyType, propName, currentContext.ResourceLookupVariable)});");
                                     }
                                     else if (typeInfo.TryGetEvent(propertyName, out var eventInfo))
                                     {
@@ -304,10 +364,14 @@ namespace HexaEngine.UI.XamlGen
                                 }
                                 else
                                 {
-                                    var typeInfo = AssemblyCache.GetType(typeName)!;
+                                    TypeInfo typeInfo = AssemblyCache.GetType(typeName)
+                                        ?? throw new InvalidOperationException($"Type '{typeName}' could not be resolved.");
                                     if (typeInfo.TryGetProperty(propertyName, out var propInfo))
                                     {
-                                        writer.WriteLine($"{variableName}.{propertyName} = {ValueConverter.Convert(propertyValue, propInfo.PropertyType, propertyName)};");
+                                        Type propertyType = propertyName == "Value" && setterValueType != null
+                                            ? setterValueType
+                                            : propInfo.PropertyType;
+                                        writer.WriteLine($"{variableName}.{propertyName} = {ConvertValue(propertyValue, propertyType, propertyName, currentContext.ResourceLookupVariable)};");
                                     }
                                     else if (typeInfo.TryGetEvent(propertyName, out var _))
                                     {
@@ -318,10 +382,23 @@ namespace HexaEngine.UI.XamlGen
                             reader.MoveToElement();
                         }
 
-                        if (!reader.IsEmptyElement && variableName != null)
+                        if (variableName != null)
                         {
-                            stack.Push(currentContext);
-                            currentContext = new() { VariableName = variableName, TypeName = typeName };
+                            ElementContext valueContext = new()
+                            {
+                                VariableName = variableName,
+                                TypeName = typeName,
+                                ResourceLookupVariable = currentContext.ResourceLookupVariable
+                            };
+                            if (reader.IsEmptyElement)
+                            {
+                                WriteChildValue(writer, currentContext, valueContext);
+                            }
+                            else
+                            {
+                                stack.Push(currentContext);
+                                currentContext = valueContext;
+                            }
                         }
 
                         break;
@@ -355,24 +432,7 @@ namespace HexaEngine.UI.XamlGen
                         if (stack.Count > 0 && !currentContext.IsPropertyElement && currentContext.VariableName != null)
                         {
                             ElementContext parentContext = stack.Peek();
-                            if (!parentContext.IsRoot)
-                            {
-                                var typeInfo = AssemblyCache.GetType(parentContext.TypeName);
-
-                                if (typeInfo.ContentProperty != null)
-                                {
-                                    var prop = typeInfo.GetProperty(typeInfo.ContentProperty);
-                                    if (prop.PropertyType.IsAssignableTo(typeof(System.Collections.IList)))
-                                    {
-                                        writer.WriteLine($"{parentContext.VariableName}.{typeInfo.ContentProperty}.Add({currentContext.VariableName});");
-
-                                    }
-                                    else
-                                    {
-                                        writer.WriteLine($"{parentContext.VariableName}.{typeInfo.ContentProperty} = {currentContext.VariableName};");
-                                    }
-                                }
-                            }
+                            WriteChildValue(writer, parentContext, currentContext);
                         }
 
                         if (stack.Count > 0)
@@ -387,6 +447,119 @@ namespace HexaEngine.UI.XamlGen
             {
                 writer.WriteLine(handlerLine);
             }
+        }
+
+        private static void WriteChildValue(CodeWriter writer, in ElementContext parentContext, in ElementContext valueContext)
+        {
+            if (parentContext.IsPropertyElement)
+            {
+                WritePropertyValue(writer, parentContext, valueContext);
+                return;
+            }
+
+            if (parentContext.IsRoot)
+            {
+                return;
+            }
+
+            TypeInfo? parentType = AssemblyCache.GetType(parentContext.TypeName);
+            if (parentType?.ContentProperty == null)
+            {
+                return;
+            }
+
+            XamlPropertyInfo property = parentType.GetProperty(parentType.ContentProperty);
+            if (property.PropertyType.IsAssignableTo(typeof(System.Collections.IList)))
+            {
+                writer.WriteLine($"{parentContext.VariableName}.{parentType.ContentProperty}.Add({valueContext.VariableName});");
+            }
+            else
+            {
+                writer.WriteLine($"{parentContext.VariableName}.{parentType.ContentProperty} = {valueContext.VariableName};");
+            }
+        }
+
+        private static void WritePropertyValue(CodeWriter writer, in ElementContext propertyContext, in ElementContext valueContext)
+        {
+            TypeInfo ownerType = AssemblyCache.GetType(propertyContext.TypeName)
+                ?? throw new InvalidOperationException($"Type '{propertyContext.TypeName}' could not be resolved.");
+            XamlPropertyInfo property = ownerType.GetProperty(propertyContext.PropertyName);
+
+            if (property.PropertyType.IsAssignableTo(typeof(System.Collections.IDictionary)))
+            {
+                if (valueContext.DictionaryKey == null)
+                {
+                    throw new InvalidOperationException($"Resource '{valueContext.TypeName}' requires x:Key or DictionaryKeyPropertyAttribute.");
+                }
+
+                writer.WriteLine($"{propertyContext.VariableName}.{propertyContext.PropertyName}.Add({valueContext.DictionaryKey}, {valueContext.VariableName});");
+                return;
+            }
+
+            if (property.PropertyType.IsAssignableTo(typeof(System.Collections.IList)))
+            {
+                writer.WriteLine($"{propertyContext.VariableName}.{propertyContext.PropertyName}.Add({valueContext.VariableName});");
+                return;
+            }
+
+            writer.WriteLine($"{propertyContext.VariableName}.{propertyContext.PropertyName} = {valueContext.VariableName};");
+        }
+
+        private static string ConvertValue(string value, Type propertyType, ReadOnlySpan<char> propertyName, string? resourceLookupVariable)
+        {
+            ReadOnlySpan<char> expression = value.AsSpan().Trim();
+            if (expression.IsEmpty || expression[0] != '{')
+            {
+                return ValueConverter.Convert(value, propertyType, propertyName);
+            }
+
+            if (expression.Length < 2 || expression[^1] != '}')
+            {
+                throw new FormatException($"Invalid markup extension '{value}'.");
+            }
+
+            expression = expression[1..^1].Trim();
+            const string staticResource = "StaticResource";
+            if (!expression.StartsWith(staticResource, StringComparison.Ordinal) ||
+                (expression.Length > staticResource.Length && !char.IsWhiteSpace(expression[staticResource.Length])))
+            {
+                throw new NotSupportedException($"Markup extension '{{{expression.ToString()}}}' is not supported.");
+            }
+
+            ReadOnlySpan<char> key = expression[staticResource.Length..].Trim();
+            if (key.IsEmpty)
+            {
+                throw new FormatException("StaticResource requires a resource key.");
+            }
+
+            string lookupVariable = resourceLookupVariable ?? "this";
+            return $"({GetTypeReference(propertyType)}){lookupVariable}.FindResource({QuoteString(key.ToString())})!";
+        }
+
+        private static string GetTypeReference(Type type)
+        {
+            if (type.IsGenericType)
+            {
+                throw new NotSupportedException($"Generic type '{type}' is not supported in generated resource expressions.");
+            }
+
+            string? fullName = type.FullName;
+            if (fullName == null)
+            {
+                throw new InvalidOperationException($"Type '{type}' has no C# type name.");
+            }
+
+            return $"global::{fullName.Replace('+', '.')}";
+        }
+
+        private static bool IsDictionaryKeyAttribute(XmlReader reader)
+        {
+            return reader.LocalName == "Key" && reader.NamespaceURI == "http://schemas.microsoft.com/winfx/2006/xaml";
+        }
+
+        private static string QuoteString(string value)
+        {
+            return $"\"{value.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "\\r").Replace("\n", "\\n")}\"";
         }
 
         private string ParseTypeName(string xmlName)

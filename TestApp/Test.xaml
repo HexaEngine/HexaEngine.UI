@@ -1,9 +1,14 @@
 <Window
-    xmlns="http://hexaengine.com/ui/v0/xaml" Title="MainWindow" Height="720" Width="1280" Background="#2C2C2CFF">
+    xmlns="http://hexaengine.com/ui/v0/xaml"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="MainWindow" Height="720" Width="1280" Background="#2C2C2CFF">
 	<Window.Resources>
 		<Style TargetType="Label">
 			<Setter Property="Foreground" Value="#FFFFFF" />
 			<Setter Property="FontFamilyName" Value="Cascadia Mono" />
+		</Style>
+		<Style TargetType="Label" x:Key="TestStyle">
+			<Setter Property="Foreground" Value="#FF00FFFF" />
 		</Style>
 	</Window.Resources>
 	<Grid>
@@ -18,8 +23,8 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">
-			<Label Margin="0,0,0,0" Foreground="#FFFFFF" FontSize="20" FontFamilyName="Cascadia Mono">StackItem 1</Label>
-			<Label Margin="0" Foreground="#FFFFFF"  FontFamilyName="Cascadia Mono">StackItem 2</Label>
+			<Label Margin="0,0,0,0" FontSize="20">StackItem 1</Label>
+			<Label Style="{StaticResource TestStyle}" Margin="0" FontFamilyName="Cascadia Mono">StackItem 2</Label>
 			<Label Margin="0,0,0,0" Foreground="#FFFFFF"  FontFamilyName="Cascadia Mono">StackItem 3</Label>
 			<TextBox MinWidth="100" MinHeight="40" WordWrapping="Wrap" />
 			<Button Click="OnButtonClick">Test</Button>

@@ -68,6 +68,7 @@
         }
 
         private readonly Dictionary<DependencyProperty, object?> properties = new();
+        private HashSet<DependencyProperty>? styledProperties;
 
         public object? GetValue(DependencyProperty dp)
         {
@@ -83,6 +84,7 @@
 
         public void SetValue(DependencyProperty dp, object? value)
         {
+            styledProperties?.Remove(dp);
             PropertyMetadata metadata = dp.GetMetadata(this) ?? throw new ArgumentException($"'{dp.Name}' is not registered with type '{DependencyObjectType}'");
 
             if (dp.ValidateValueCallback != null && !dp.ValidateValueCallback(value))
@@ -143,6 +145,7 @@
 
         public void SetValue<TType>(DependencyProperty<TType> dp, TType? value)
         {
+            styledProperties?.Remove(dp);
             PropertyMetadata metadata = dp.GetMetadata(this) ?? throw new ArgumentException($"'{dp.Name}' is not registered with type '{DependencyObjectType}'");
 
             if (dp.ValidateValueCallback != null && !dp.ValidateValueCallback(value))
@@ -184,8 +187,35 @@
             properties[dp] = value;
         }
 
+        internal void SetStyleValue(DependencyProperty dp, object? value)
+        {
+            if (properties.ContainsKey(dp) && (styledProperties == null || !styledProperties.Contains(dp)))
+            {
+                return;
+            }
+
+            SetValue(dp, value);
+            (styledProperties ??= []).Add(dp);
+        }
+
+        internal void ClearStyleValues()
+        {
+            if (styledProperties == null)
+            {
+                return;
+            }
+
+            foreach (DependencyProperty property in styledProperties)
+            {
+                properties.Remove(property);
+            }
+
+            styledProperties.Clear();
+        }
+
         public void ClearValue(DependencyProperty dp)
         {
+            styledProperties?.Remove(dp);
             PropertyMetadata metadata = dp.GetMetadata(this) ?? throw new ArgumentException($"'{dp.Name}' is not registered with type '{DependencyObjectType}'");
             properties.TryGetValue(dp, out var oldValue);
 
