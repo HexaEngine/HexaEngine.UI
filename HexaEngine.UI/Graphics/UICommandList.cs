@@ -229,7 +229,7 @@
         }
     }
 
-    public unsafe class UICommandList
+    public unsafe class UICommandList : IDisposable
     {
         private UnsafeList<UIVertex> vertices = new();
         private UnsafeList<uint> indices = new();
@@ -382,7 +382,7 @@
 
             RectangleF bounds = new(min.X, min.Y, max.X, max.Y);
 
-            UIDrawCommand cmd = new(vertices.Data, indices.Data, vertexCountSinceLast, indexCountSinceLast, vertexCountOffset, indexCountOffset, zIndex: zIndex, clipRect, bounds, commandType, brush, textureId0, textureId1);
+            UIDrawCommand cmd = new(vertexCountSinceLast, indexCountSinceLast, vertexCountOffset, indexCountOffset, zIndex: zIndex, clipRect, bounds, commandType, brush, textureId0, textureId1);
             commands.Add(cmd);
 
             vertexCountOffset = (uint)vertices.Size;

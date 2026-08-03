@@ -180,6 +180,7 @@
         protected override void DisposeCore()
         {
             uirenderer.Release();
+            compositionTexture?.Dispose();
         }
     }
 }

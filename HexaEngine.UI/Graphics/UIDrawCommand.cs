@@ -5,8 +5,6 @@
     public unsafe struct UIDrawCommand
     {
         public long Id;
-        public UIVertex* Vertices;
-        public uint* Indices;
         public uint VertexCount;
         public uint IndexCount;
         public uint IndexOffset;
@@ -21,10 +19,8 @@
 
         internal static long id;
 
-        public UIDrawCommand(UIVertex* vertices, uint* indices, uint vertexCount, uint indexCount, uint vertexOffset, uint indexOffset, int zIndex, ClipRectangle clipRect, RectangleF bounds, UICommandType type, Brush? brush, nint textureId0 = 0, nint textureId1 = 0)
+        public UIDrawCommand(uint vertexCount, uint indexCount, uint vertexOffset, uint indexOffset, int zIndex, ClipRectangle clipRect, RectangleF bounds, UICommandType type, Brush? brush, nint textureId0 = 0, nint textureId1 = 0)
         {
-            Vertices = vertices;
-            Indices = indices;
             VertexCount = vertexCount;
             IndexCount = indexCount;
             VertexOffset = vertexOffset;
